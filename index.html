@@ -1,0 +1,1755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="办公桌-行业软件下载，提供Adobe等常用办公软件的下载，安全可靠，适合个人学习使用。">
+    <meta name="keywords" content="软件下载,办公软件,Adobe,Photoshop,Premiere,办公桌,行业软件,免费下载">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <title>办公桌-行业软件下载</title>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="https://at.alicdn.com/t/c/font_4976428_k8wk50tzuoa.css" rel="stylesheet">
+
+
+    <style>
+        /* 定义基础变量 */
+        :root {
+            --primary: #FF7A00;
+            --secondary: #6B7280;
+            --background: #F9FAFB;
+            --lightgray: #F3F4F6;
+        }
+
+        /* 定义字体 */
+        body {
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--background);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        /* 顶部导航 */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: white;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+        }
+
+        header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        header .search {
+            position: relative;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        header .search input {
+            width: 100%;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border: 1px solid #ccc;
+            border-radius: 0.25rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        header .search input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.2);
+        }
+
+        header .search i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+
+        header .actions {
+            display: none;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            header .actions {
+                display: flex;
+            }
+        }
+
+        header .actions button {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        header .actions button:hover {
+            color: var(--primary);
+        }
+
+        /* 主内容区域 */
+        main {
+            flex-grow: 1;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            main {
+                flex-direction: row;
+            }
+        }
+
+        /* 左侧分类菜单 */
+        aside {
+            width: 100%;
+        }
+
+        @media (min-width: 1024px) {
+            aside {
+                width: 25%;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            aside {
+                width: 20%;
+            }
+        }
+
+        aside .category-menu {
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            /* position: sticky; */
+            /* top: 5rem; */
+            position: fixed;
+            top: 5rem;
+            left: 0;
+            /* 以下为当前容器参数，方便自行调整 */
+            width: 270px !important;   /* 当前宽度，建议范围140~220px */
+            min-width: 140px;          /* 最小宽度 */
+            max-width: 280px;          /* 最大宽度 */
+            height: auto;              /* 当前高度自动，可改为固定高度如600px */
+            z-index: 10;
+        }
+
+        /* 保证暗夜模式下也生效 */
+        html.dark aside .category-menu {
+            background: #23272f;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+        }
+
+        /* 给 aside 增加 padding-top，避免内容被遮挡 */
+        aside {
+            /* ...existing code... */
+            padding-top: 6.5rem;
+        }
+
+        aside .category-menu h2 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        aside .category-menu .toggle {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        aside .category-menu .toggle button {
+            width: 3rem;
+            height: 1.5rem;
+            background: #ccc;
+            border-radius: 1rem;
+            position: relative;
+            cursor: pointer;
+            border: none;
+            outline: none;
+            margin-left: auto;
+            transition: background 0.3s;
+            /* 新增动画 */
+            transition: background 0.3s, box-shadow 0.3s;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        aside .category-menu .toggle button.active {
+            background: var(--primary);
+        }
+
+        aside .category-menu .toggle button span {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+        }
+
+        aside .category-menu .toggle button.active span {
+            transform: translateX(1.5rem);
+            box-shadow: 0 2px 8px rgba(255, 122, 0, 0.25);
+        }
+
+        aside .category-menu .category-list {
+            max-height: 60vh;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #e5e7eb #fff;
+        }
+
+        aside .category-menu .category-list::-webkit-scrollbar {
+            width: 8px;
+            background: #fff;
+        }
+
+        aside .category-menu .category-list::-webkit-scrollbar-thumb {
+            background: #e5e7eb;
+            border-radius: 4px;
+        }
+
+        aside .category-menu .category-item button {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        aside .category-menu .category-item button:hover {
+            background: var(--lightgray);
+        }
+
+        aside .category-menu .category-item button i {
+            transition: transform 0.3s;
+        }
+
+        aside .category-menu .category-item button.active i {
+            transform: rotate(180deg);
+        }
+
+        aside .category-menu .category-item .category-content {
+            padding-left: 1rem;
+            display: none;
+            /* 新增动画过渡 */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(.4,0,.2,1), opacity 0.35s;
+            opacity: 0;
+        }
+
+        aside .category-menu .category-item .category-content.open {
+            display: block;
+            max-height: 500px;
+            /* 足够大即可 */
+            opacity: 1;
+        }
+
+        aside .category-menu .category-item .category-content a {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: #333;
+            text-decoration: none; /* 去除下划线 */
+            transition: background-color 0.3s;
+        }
+
+        aside .category-menu .category-item .category-content a:hover {
+            background: var(--lightgray);
+        }
+
+        /* 暗夜模式样式 */
+        html.dark,
+        html.dark body {
+            background: #18181b;
+            color: #e5e7eb;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        html.dark header {
+            background: #23272f;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+        }
+
+        html.dark header .logo {
+            color: #e5e7eb;
+        }
+
+        html.dark header .search input {
+            background: #23272f;
+            color: #e5e7eb;
+            border-color: #444;
+        }
+
+        html.dark header .search input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 122, 0, 0.2);
+        }
+
+        html.dark header .search i {
+            color: #bdbdbd;
+        }
+
+        html.dark header .actions button {
+            color: #bdbdbd;
+        }
+
+        html.dark header .actions button:hover {
+            color: var(--primary);
+        }
+
+        html.dark aside .category-menu {
+            background: #23272f;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+        }
+
+        html.dark aside .category-menu h2 {
+            color: #e5e7eb;
+        }
+
+        html.dark aside .category-menu .toggle button {
+            background: #444;
+        }
+
+        html.dark aside .category-menu .category-list {
+            background: #23272f;
+        }
+
+        html.dark aside .category-menu .category-item button {
+            color: #e5e7eb;
+        }
+
+        html.dark aside .category-menu .category-item button:hover {
+            background: #23272f;
+        }
+
+        html.dark aside .category-menu .category-item .category-content a {
+            color: #e5e7eb;
+        }
+
+        html.dark aside .category-menu .category-item .category-content a:hover {
+            background: #23272f;
+        }
+
+        /* 悬浮钉住的卡片样式 */
+        section .software-title.pinned {
+            position: sticky;
+            top: 6.5rem;
+            z-index: 999;
+            border: 2px solid #ff3333;
+            box-shadow: 0 4px 24px rgba(255, 51, 51, 0.08);
+            background: white;
+        }
+
+        html.dark section .software-title.pinned {
+            background: #23272f;
+            border-color: #ff3333;
+        }
+
+        /* 修复图钉按钮消失问题，确保 .fa-unthumb-tack 也有合适的显示 */
+        .fa-unthumb-tack:before {
+            content: "\f08d"; /* 使用和 fa-thumb-tack 相同的图标 */
+        }
+
+        footer {
+            text-align: center;
+            color: #888;
+            padding: 1.5rem 0 1rem 0;
+            font-size: 0.95rem;
+            margin-top: 2rem;
+            background: #f3f4f6; /* 新增背景色 */
+        }
+
+        footer a {
+            color: #888;
+            text-decoration: none; /* 去除下划线 */
+        }
+
+        /* 右侧功能栏 */
+        #right-toolbar {
+            position: fixed;
+            right: -0.1rem; /* 原为 2.5rem，向右紧贴边界 */
+            bottom: 2.5rem;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            align-items: flex-end;
+        }
+
+        #right-toolbar button {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 50%;
+            width: 34px;
+            height: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            color: #888;
+            font-size: 1.15rem;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            padding: 0;
+        }
+
+        #right-toolbar button:hover {
+            background: #f3f4f6;
+            color: var(--primary);
+        }
+
+        /* 暗夜模式适配 */
+        html.dark #right-toolbar button {
+            background: #23272f;
+            border-color: #444;
+            color: #bdbdbd;
+        }
+
+        html.dark #right-toolbar button:hover {
+            background: #18181b;
+            color: var(--primary);
+        }
+
+        /* 二维码弹窗样式 */
+        #qr-modal {
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            display: none; /* 初始隐藏二维码弹窗 */
+            transition: opacity 0.25s;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #qr-modal.active {
+            display: block;
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        #qr-modal .qr-popup {
+            position: absolute;
+            right: 0.7rem; /* 原为 2.5rem，紧贴右边界，与工具栏对齐 */
+            bottom: 5.5rem;
+            background: #fff;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+            padding: 1.2rem 1.5rem 1rem 1.5rem;
+            min-width: 180px;
+            min-height: 160px;
+            animation: fadeIn 0.2s;
+            transform: translateY(30px);
+            opacity: 0;
+            transition: transform 0.25s, opacity 0.25s;
+            text-align: center;
+        }
+
+        #qr-modal.active .qr-popup {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        #qr-modal .qr-close {
+            position: absolute;
+            right: 0.7em;
+            top: 0.5em;
+            font-size: 1.2em;
+            color: #888;
+            cursor: pointer;
+        }
+
+        #qr-modal .qr-close:hover {
+            color: var(--primary);
+        }
+
+        html.dark #qr-modal .qr-popup {
+            background: #23272f;
+            color: #e5e7eb;
+        }
+        /* 二维码按钮 图大小 */
+        #qr-modal .qr-popup img {
+            max-width: 120px;
+            max-height: 120px;
+            width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto 0.5rem auto;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 新增规则，确保所有超链接都没有下划线 */
+        a {
+            text-decoration: none;
+        }
+
+        /* 隐藏iframe内部滚动条（仅影响iframe自身，不影响主页面滚动） */
+        #software-list-iframe {
+            overflow: hidden !important;
+            /* 兼容性处理 */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        #software-list-iframe::-webkit-scrollbar {
+            display: none;
+            /* Chrome/Safari/Edge */
+        }
+
+        /* 邮件弹窗样式 */
+        #email-popup {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 3000;
+            display: none;
+        }
+
+        #email-popup.active {
+            display: block;
+        }
+
+        #email-popup .email-popup-mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        #email-popup .email-popup-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            color: #333;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+            padding: 2rem 2.5rem 1.5rem 2.5rem;
+            min-width: 220px;
+            text-align: center;
+        }
+
+        #email-popup .email-popup-close {
+            position: absolute;
+            right: 1em;
+            top: 0.7em;
+            font-size: 1.3em;
+            color: #888;
+            cursor: pointer;
+        }
+
+        #email-popup .email-popup-close:hover {
+            color: var(--primary);
+        }
+
+        /* 关于弹窗样式 */
+        #about-popup {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 3000;
+            display: none;
+        }
+
+        #about-popup.active {
+            display: block;
+        }
+
+        /* 复用邮件弹窗样式给关于弹窗 */
+        #about-popup .email-popup-mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        #about-popup .email-popup-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            color: #333;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+            padding: 2rem 2.5rem 1.5rem 2.5rem;
+            min-width: 220px;
+            text-align: center;
+        }
+
+        #about-popup .email-popup-close {
+            position: absolute;
+            right: 1em;
+            top: 0.7em;
+            font-size: 1.3em;
+            color: #888;
+            cursor: pointer;
+        }
+
+        #about-popup .email-popup-close:hover {
+            color: var(--primary);
+        }
+
+        html.dark #email-popup .email-popup-content {
+            background: #23272f;
+            color: #e5e7eb;
+        }
+
+        html.dark #about-popup .email-popup-content {
+            background: #23272f;
+            color: #e5e7eb;
+        }
+
+        /* 密码弹窗样式 */
+        #password-modal {
+            position: fixed;
+            z-index: 5000;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #password-modal .password-mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.18);
+        }
+
+        #password-modal .password-popup {
+            position: relative;
+            z-index: 1;
+            background: #fff;
+            border-radius: 0.7rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+            padding: 2.2rem 2.2rem 1.5rem 2.2rem;
+            min-width: 260px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: 1.1rem;
+        }
+
+        #password-modal .password-title {
+            font-size: 1.18rem;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        #password-modal .password-input-group {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: -0.5rem; /* 进一步减小间距，使密码框和确认按钮更靠近 */
+        }
+        #password-modal .password-input-group > div {
+            position: relative;
+            display: flex;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        #password-modal input#password-input {
+            width: 120px;
+            min-width: 80px;
+            max-width: 160px;
+            padding: 0.5rem 2.1rem 0.5rem 0.8rem;
+            font-size: 1.05rem;
+            border: 1px solid #ccc;
+            border-radius: 0.3rem;
+            outline: none;
+            transition: border-color 0.2s;
+            flex: none;
+        }
+        #password-modal #toggle-password {
+            position: absolute;
+            right: 1.1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #bbb;
+            font-size: 1.1rem;
+            cursor: pointer;
+            user-select: none;
+            z-index: 2;
+            background: transparent;
+            border: none;
+            padding: 0;
+        }
+        #password-modal #toggle-password.active {
+            color: #FF7A00;
+        }
+        #password-modal button#password-submit {
+            margin: 0 0 0 0.5rem;
+            padding: 0.5rem 1.1rem;
+            width: auto;
+            min-width: 60px;
+            background: #FF7A00;
+            color: #fff;
+            border: none;
+            border-radius: 0.3rem;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: background 0.2s;
+            flex: none;
+        }
+        #password-modal button#password-submit:hover {
+            background: #ff9900;
+        }
+
+        #password-modal #password-error {
+            color: #e74c3c;
+            font-size: 0.98rem;
+            min-height: 1.2em;
+            margin-top: 0.1rem;
+            transition: opacity 0.2s;
+        }
+
+        #password-modal .password-tip {
+            color: #888;
+            font-size: 0.95rem;
+            margin-top: 0.2rem;
+        }
+
+        #password-modal .password-qr {
+            width: 110px;
+            height: 110px;
+            margin: 0.3rem auto 0 auto;
+            border-radius: 0.3rem;
+            border: 1px solid #eee;
+            object-fit: contain;
+            background: #fafafa;
+        }
+
+        html.dark #password-modal .password-popup {
+            background: #23272f;
+            color: #e5e7eb;
+        }
+
+        html.dark #password-modal input#password-input {
+            background: #23272f;
+            color: #e5e7eb;
+            border-color: #444;
+        }
+
+        html.dark #password-modal button#password-submit {
+            background: #FF7A00;
+            color: #fff;
+        }
+
+        html.dark #password-modal .password-tip {
+            color: #bdbdbd;
+        }
+
+        html.dark #password-modal .password-qr {
+            background: #23272f;
+            border-color: #444;
+        }
+
+        /* 移动端优化：基础字体和间距调整 */
+        html {
+            font-size: 16px;
+        }
+
+        @media (max-width: 900px) {
+            header .container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0.5rem;
+            }
+            header {
+                padding: 0.7rem 0.7rem;
+            }
+            header .logo {
+                font-size: 1.1rem;
+                text-align: left;
+            }
+            header .search {
+                max-width: 90% !important;
+                width: 60% !important;
+                margin: 0.3rem 0;
+            }
+            header .search input {
+                font-size: 1rem;
+                padding: 0.45rem 1rem 0.45rem 2.2rem;
+            }
+            header .actions {
+                justify-content: flex-end;
+            }
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 1rem 0.2rem;
+                gap: 1rem;
+            }
+            aside {
+                padding-top: 0.5rem !important;
+            }
+            aside .category-menu {
+                position: static !important;
+                width: 100% !important;
+                box-shadow: none;
+                padding: 0.7rem 0.5rem;
+                margin-bottom: 1rem;
+            }
+            aside .category-menu .category-list {
+                max-height: 40vh;
+            }
+            #software-list-iframe {
+                min-height: 700px !important;
+            }
+            #right-toolbar {
+                right: 0.5rem;
+                bottom: 1.2rem;
+                align-items: flex-end;
+            }
+            #right-toolbar button {
+                width: 38px;
+                height: 38px;
+                font-size: 1.25rem;
+            }
+            #qr-modal .qr-popup,
+            #email-popup .email-popup-content,
+            #about-popup .email-popup-content,
+            #password-modal .password-popup {
+                min-width: 0 !important;
+                width: 95vw !important;
+                max-width: 99vw;
+                padding: 1.2rem 0.7rem 1rem 0.7rem;
+            }
+            #qr-modal .qr-popup img,
+            #password-modal .password-qr {
+                width: 80px !important;
+                height: 80px !important;
+            }
+        }
+
+        @media (max-width: 900px) and (min-width: 601px) {
+            main {
+                padding: 1.2rem 0.7rem;
+                gap: 1.2rem;
+            }
+            aside {
+                width: 35% !important;
+                padding-top: 2.5rem !important;
+            }
+            #software-list-iframe {
+                min-height: 900px !important;
+            }
+        }
+
+        @media (max-width: 1023px) {
+            main {
+                flex-direction: column !important;
+            }
+            aside {
+                width: 100% !important;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <!-- 顶部导航 -->
+    <header>
+        <div class="container">
+            <div class="logo">行业软件下载</div>
+            <div class="search">
+                <input type="text" placeholder="搜索软件...">
+                <i class="fa fa-search"></i>
+            </div>
+            <div class="actions">
+                <!-- 暗夜模式切换按钮 -->
+                <button id="theme-toggle-btn">
+                    <i id="theme-toggle-icon" class="fa fa-moon-o"></i>
+                </button>
+                <button>
+                    <i class="fa fa-user-circle"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- 左侧分类菜单 -->
+        <aside>
+            <div class="category-menu">
+                <div class="toggle">
+                    <h2>软件分类</h2>
+                    <button id="categoryToggleBtn">
+                        <span id="categoryToggleKnob"></span>
+                    </button>
+                </div>
+                <div class="category-list" id="categoryList">
+                    <!-- 分类项：Adobe  data-default="show/hide" 在默认打开网页时iframe显示-->
+                    <div class="category-item">
+                        <button id="adobe-category-btn" data-iframe="software-list.html" data-default="show" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">Adobe</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+                            <!-- 按单词字母或汉字 数量（不拆分组合词  忽略 空格 标点 ） 按少→多排列-->
+							<a href="#Photoshop" onclick="navigateToSoftware(this)">Photoshop</a>
+                            <a href="#Bridge" onclick="navigateToSoftware(this)">Bridge</a>
+<a href="#Acrobat" onclick="navigateToSoftware(this)">Acrobat</a>
+<a href="#Animate" onclick="navigateToSoftware(this)">Animate</a>
+<a href="#Prelude" onclick="navigateToSoftware(this)">Prelude</a>
+<a href="#InCopy" onclick="navigateToSoftware(this)">InCopy</a>
+<a href="#Audition" onclick="navigateToSoftware(this)">Audition</a>
+<a href="#Premiere" onclick="navigateToSoftware(this)">Premiere</a>
+<a href="#Lightroom" onclick="navigateToSoftware(this)">Lightroom</a>
+<a href="#Dimension" onclick="navigateToSoftware(this)">Dimension</a>
+<a href="#InDesign" onclick="navigateToSoftware(this)">InDesign</a>
+<a href="#Dreamweaver" onclick="navigateToSoftware(this)">Dreamweaver</a>
+<a href="#Illustrator" onclick="navigateToSoftware(this)">Illustrator</a>
+<a href="#Media Encoder" onclick="navigateToSoftware(this)">Media Encoder</a>
+<a href="#Character Animator" onclick="navigateToSoftware(this)">Character Animator</a>
+<a href="#Photoshop Elements" onclick="navigateToSoftware(this)">Photoshop Elements</a>
+                        </div>
+                    </div>
+                    <!-- 2 -->
+                    <div class="category-item">
+                        <button id="office-category-btn" data-iframe="software-list2.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">Office</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+						    <a href="#Office365" onclick="navigateToSoftware(this)">Office365</a>
+                            <a href="#Word" onclick="navigateToSoftware(this)">Word</a>
+                            <a href="#Excel" onclick="navigateToSoftware(this)">Excel</a>
+                            <a href="#PowerPoint" onclick="navigateToSoftware(this)">PowerPoint</a>
+							<a href="#WPS" onclick="navigateToSoftware(this)">WPS</a>
+                        </div>
+                    </div> 
+                   <!-- 2.1-->
+                    <div class="category-item">
+                        <button id="office-category-btn" data-iframe="software-list2.1.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">Autodesk</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+
+                        </div>
+                    </div>
+                    <!-- 3 -->
+                    <div class="category-item">
+                        <button id="os-category-btn" data-iframe="software-list3.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">操作系统</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+                            <a href="#Windows" onclick="navigateToSoftware(this)">Windows</a>
+							<a href="#MacOS" onclick="navigateToSoftware(this)">MacOS</a>
+                            <a href="#Ubuntu" onclick="navigateToSoftware(this)">Ubuntu</a>
+                            <a href="#CentOS" onclick="navigateToSoftware(this)">CentOS</a>
+							<a href="#Deepin" onclick="navigateToSoftware(this)">Deepin</a>
+
+                        </div>
+                    </div>
+                    <!-- 4 -->
+                    <div class="category-item">
+                        <button id="design3d-category-btn" data-iframe="software-list4.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">三维设计</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+
+                        </div>
+                    </div>
+                    <!-- 5 -->
+                    <div class="category-item">
+                        <button id="animation-category-btn" data-iframe="software-list5.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">影视动画</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+    
+
+                        </div>
+                    </div>
+                    <!-- 6 -->
+                    <div class="category-item">
+                        <button id="arch-category-btn" data-iframe="software-list6.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">建筑设计</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+
+
+                        </div>
+                    </div>
+                    <!-- 7 -->
+                    <div class="category-item">
+                        <button id="mech-category-btn" data-iframe="software-list7.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">机械设计</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+
+
+                        </div>
+                    </div>
+                    <!-- 8 -->
+                    <div class="category-item">
+                        <button id="elec-category-btn" data-iframe="software-list8.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">电子电路</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+
+
+                        </div>
+                    </div>
+                    <!-- 9 -->
+                    <div class="category-item">
+                        <button id="data-category-btn" data-iframe="software-list9.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">数据分析</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+
+                        </div>
+                    </div>
+                    <!-- 10 -->
+                    <div class="category-item">
+                        <button id="image-category-btn" data-iframe="software-list10.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">图像处理</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+
+                        </div>
+                    </div>
+                    <!-- 11 -->
+                    <div class="category-item">
+                        <button id="other-category-btn" data-iframe="software-list11.html" data-default="hide" onclick="toggleCategory(this)">
+                            <h3 class="font-medium">其它</h3>
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <div class="category-content">
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 用iframe引入右侧软件列表 -->
+        <iframe id="software-list-iframe" style="flex:1;border:none;min-height:1200px;width:100%;overflow:hidden;"></iframe>
+    </main>
+
+
+
+    <footer>
+        <!-- 页脚内容 -->
+        <p>仅供个人学习使用，请下载后24小时内删除，严禁任何商业用途</p>
+        <p>版权所有 &copy; 办公桌-软件下载</p>
+        <a id="about-link" style="cursor:pointer;">关于</a> | 
+        <a id="guide-link" style="cursor:pointer;">指南</a> |
+        <a id="email-link" style="cursor:pointer;">邮件</a> 
+<p>本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank"> <img src="img/upyun_icon4.png" align="absmiddle" width="30px" height="30px" /></a>提供CDN加速/云存储服务</p>
+    </footer>
+
+    <!-- 邮件弹窗 -->
+    <div id="email-popup">
+        <div class="email-popup-mask"></div>
+        <div class="email-popup-content">
+            <span class="email-popup-close" id="email-popup-close">&times;</span>
+            <p>联系：xxx@qq.com</p>
+        </div>
+    </div>
+    <!-- 关于弹窗 -->
+    <div id="about-popup">
+        <div class="email-popup-mask"></div>
+        <div class="email-popup-content">
+            <span class="email-popup-close" id="about-popup-close">&times;</span>
+<div style="text-align:left;">
+			<p style="line-height:0.5; letter-spacing: 0.05em; font-weight: bold;">关于：</p>
+            <p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">软件以windows平台为主，遵守：无病毒、无捆绑等基础，结合用户特点与角度；采用人工：更新、检测，月/季/年定期，并迭代维护；致力构建：安全、纯净、高效资源共享生态；用户要，合理合规使用，并获取官方正版和授权</p>
+			<p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">部分软件，因开源或官方提供完整版，固仅提供相关内容站；软件非最新版最好，亦需考虑稳定，适用性，满足生产力环境；</p>
+            <p style="line-height:0.5; letter-spacing: 0.05em; font-weight: bold;">声明：</p>
+            <p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">本站收录所有软件，均由第三方提供，且仅供个人学习使用；严禁任何商业用途，但因局限性，难以对其全面监控；如涉权益争议，请贵方，以PDF书面材料佐证，核实后下架/删除处理，预处理时间：1-7天</p>
+            <p style="line-height:0.5; letter-spacing: 0.05em; font-weight: bold;">其它：</p>
+			<p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">链接、收录、更新、失效、停滞等问题；请留言反馈邮箱</p>
+          </div>
+        </div>
+    </div>
+
+    <!-- 密码验证弹窗 -->
+    <div id="password-modal">
+        <div class="password-mask"></div>
+        <div class="password-popup">
+            <div class="password-title">请输入今日密码</div>
+            <div class="password-input-group">
+                <div>
+                    <input id="password-input" type="password" maxlength="9" autocomplete="off" placeholder="请输入密码" style="padding-right:2.1rem;" />
+                    <span id="toggle-password" class="fa fa-eye" style="cursor:pointer;" title="显示/隐藏密码"></span>
+                </div>
+                <button id="password-submit">确定</button>
+            </div>
+            <div id="password-error"></div>
+            <div class="password-tip">扫码关注公众号获取今日密码</div>
+            <img src="img/wxcode.jpg" alt="公众号二维码" class="password-qr" />
+        </div>
+    </div>
+
+    <!-- 右侧功能栏 -->
+    <div id="right-toolbar">
+        <button id="qr-toggle-btn">
+            <i class="fa fa-qrcode"></i>
+        </button>
+        <button id="scroll-to-top-btn">
+            <i class="fa fa-arrow-up"></i>
+        </button>
+        <button id="scroll-to-bottom-btn">
+            <i class="fa fa-arrow-down"></i>
+        </button> 
+        <button id="refresh-btn" title="刷新">
+            <i class="fa fa-refresh"></i>
+        </button>
+    </div>
+
+    <!-- 二维码弹窗 -->
+    <div id="qr-modal">
+        <div class="qr-mask"></div>
+        <div class="qr-popup">
+            <span class="qr-close" onclick="closeQRModal()">&times;</span>
+            <!-- 确保图片路径正确 -->
+            <img src="img/wxcode.jpg" alt="二维码">
+            <p>扫码关注</p>
+        </div>
+    </div>
+
+    <script>
+        // 暗夜模式切换
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        const themeToggleIcon = document.getElementById('theme-toggle-icon');
+        const html = document.documentElement;
+
+        themeToggleBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            html.style.transition = 'background 0.3s, color 0.3s';
+            if (html.classList.contains('dark')) {
+                themeToggleIcon.classList.remove('fa-moon-o');
+                themeToggleIcon.classList.add('fa-sun-o');
+            } else {
+                themeToggleIcon.classList.remove('fa-sun-o');
+                themeToggleIcon.classList.add('fa-moon-o');
+            }
+            // 新增：通知iframe切换暗夜模式
+            const iframe = document.getElementById('software-list-iframe');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage({
+                    type: 'setDarkMode',
+                    dark: html.classList.contains('dark')
+                }, '*');
+            }
+            setTimeout(() => { html.style.transition = ''; }, 350);
+        });
+
+        // 分类菜单开关按钮控制“Adobe”子分类展开/收起
+        const categoryToggleBtn = document.getElementById('categoryToggleBtn');
+        const categoryToggleKnob = document.getElementById('categoryToggleKnob');
+        // 只查找第一个分类项的内容（即Adobe的子分类）
+        const adobeCategoryContent = document.querySelector('.category-item .category-content');
+
+        categoryToggleBtn.addEventListener('click', () => {
+            categoryToggleBtn.classList.toggle('active');
+            const allCategoryContents = document.querySelectorAll('.category-item .category-content');
+            const expand = categoryToggleBtn.classList.contains('active');
+            allCategoryContents.forEach(content => {
+                if (expand) {
+                    content.classList.add('open');
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    setTimeout(() => {
+                        content.style.maxHeight = null;
+                    }, 350);
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    setTimeout(() => {
+                        content.classList.remove('open');
+                        content.style.maxHeight = null;
+                    }, 10);
+                }
+            });
+            categoryToggleKnob.style.transform = expand ? 'translateX(1.5rem)' : 'translateX(0)';
+        });
+
+        // 分类项展开/收起，并控制iframe显示/关闭
+        function toggleCategory(button) {
+            // 收起其它分类
+            document.querySelectorAll('.category-item > button').forEach(btn => {
+                if (btn !== button) {
+                    btn.classList.remove('active');
+                    const content = btn.nextElementSibling;
+                    if (content) {
+                        content.classList.remove('open');
+                        content.style.maxHeight = null;
+                    }
+                }
+            });
+            // 当前分类展开/收起
+            button.classList.toggle('active');
+            const content = button.nextElementSibling;
+            if (!content) return;
+            const isOpen = content.classList.contains('open');
+            if (isOpen) {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                setTimeout(() => {
+                    content.classList.remove('open');
+                    content.style.maxHeight = null;
+                }, 10);
+            } else {
+                content.classList.add('open');
+                content.style.maxHeight = content.scrollHeight + 'px';
+                setTimeout(() => {
+                    content.style.maxHeight = null;
+                }, 350);
+            }
+            // 控制iframe显示/关闭
+            var iframe = document.getElementById('software-list-iframe');
+            var page = button.getAttribute('data-iframe');
+            var def = button.getAttribute('data-default');
+            if (page) {
+                if (!button.classList.contains('active')) {
+                    // 收起时关闭iframe
+                    iframe.src = '';
+                } else {
+                    if (def === 'hide') {
+                        iframe.src = '';
+                        setTimeout(function() {
+                            iframe.src = page;
+                            iframe.onload = function() {
+                                iframe.contentWindow.postMessage({
+                                    type: 'setDarkMode',
+                                    dark: document.documentElement.classList.contains('dark')
+                            }, '*');
+                        };
+                        }, 120);
+                    } else {
+                        iframe.src = page;
+                        iframe.onload = function() {
+                            iframe.contentWindow.postMessage({
+                                type: 'setDarkMode',
+                                dark: document.documentElement.classList.contains('dark')
+                            }, '*');
+                        };
+                    }
+                }
+            }
+        }
+
+        // 页面加载时，自动展开第一个 data-default="show" 分类并加载iframe，其它全部关闭
+        window.addEventListener('DOMContentLoaded', function() {
+            var btns = document.querySelectorAll('.category-item > button[data-iframe]');
+            var found = false;
+            btns.forEach(btn => {
+                var def = btn.getAttribute('data-default');
+                var content = btn.nextElementSibling;
+                if (def === 'show' && !found) {
+                    btn.classList.add('active');
+                    if (content) {
+                        content.classList.add('open');
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        setTimeout(() => {
+                            content.style.maxHeight = null;
+                        }, 350);
+                    }
+                    var iframe = document.getElementById('software-list-iframe');
+                    var page = btn.getAttribute('data-iframe');
+                    if (page) {
+                        iframe.src = page;
+                        iframe.onload = function() {
+                            iframe.contentWindow.postMessage({
+                                type: 'setDarkMode',
+                                dark: document.documentElement.classList.contains('dark')
+                            }, '*');
+                        };
+                    }
+                    found = true;
+                } else {
+                    btn.classList.remove('active');
+                    if (content) {
+                        content.classList.remove('open');
+                        content.style.maxHeight = null;
+                    }
+                }
+            });
+        });
+
+        // 导航到软件并让标题颜色闪动（自动识别分类 data-iframe）
+        function navigateToSoftware(link) {
+            const targetId = link.getAttribute('href').substring(1);
+            const header = document.querySelector('header');
+            const headerHeight = (header ? header.offsetHeight : 0) + 60;
+
+            // 优化：点击分类时主页面自动滚动到顶部，确保右侧卡片可见
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // 自动识别分类按钮
+            let parentCategory = link.closest('.category-item');
+            let iframe = document.getElementById('software-list-iframe');
+            if (parentCategory) {
+                let btn = parentCategory.querySelector('button[data-iframe]');
+                let page = btn ? btn.getAttribute('data-iframe') : '';
+                if (page && !iframe.src.includes(page)) {
+                    iframe.src = page;
+                    iframe.onload = function() {
+                        // 同步暗夜模式状态
+                        iframe.contentWindow.postMessage({
+                            type: 'setDarkMode',
+                            dark: document.documentElement.classList.contains('dark')
+                        }, '*');
+                    };
+                    return;
+                }
+            }
+            // 已经是对应页面，直接导航
+            iframe.contentWindow.postMessage({ type: 'navigate', id: targetId, headerHeight }, '*');
+        }
+
+        // 实现标题颜色闪动效果
+        function flashTitleColor(title) {
+            const originalColor = title.style.color;
+            const flashColor = 'orange';
+            const flashCount = 3;
+            let count = 0;
+
+            const interval = setInterval(() => {
+                if (count < flashCount * 2) {
+                    title.style.color = count % 2 === 0 ? flashColor : originalColor;
+                    count++;
+                } else {
+                    title.style.color = originalColor;
+                    clearInterval(interval);
+                }
+            }, 300);
+        }
+
+        // 二维码弹窗显示/隐藏
+        const qrToggleBtn = document.getElementById('qr-toggle-btn');
+        const qrModal = document.getElementById('qr-modal');
+        const qrMask = qrModal.querySelector('.qr-mask');
+        const qrPopup = qrModal.querySelector('.qr-popup');
+
+        qrToggleBtn.addEventListener('click', () => {
+            if (qrModal.classList.contains('active')) {
+                qrModal.classList.remove('active');
+                qrModal.style.pointerEvents = 'none';
+                setTimeout(() => { qrModal.style.display = 'none'; }, 250);
+            } else {
+                qrModal.style.display = 'block';
+                setTimeout(() => {
+                    qrModal.classList.add('active');
+                    qrModal.style.pointerEvents = 'none'; // 只让弹窗和遮罩可点
+                    qrMask.style.pointerEvents = 'auto';
+                    qrPopup.style.pointerEvents = 'auto';
+                }, 10);
+            }
+        });
+
+        function closeQRModal() {
+            qrModal.classList.remove('active');
+            qrModal.style.pointerEvents = 'none';
+            setTimeout(() => { qrModal.style.display = 'none'; }, 250);
+        }
+
+        // 点击遮罩关闭二维码弹窗
+        if (qrMask) {
+            qrMask.addEventListener('click', closeQRModal);
+        }
+
+        // 新增：ESC 键关闭所有模态弹窗
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                // 关闭二维码弹窗
+                if (qrModal.classList.contains('active')) closeQRModal();
+                // 关闭邮件弹窗
+                const emailPopup = document.getElementById('email-popup');
+                if (emailPopup && emailPopup.classList.contains('active')) {
+                    emailPopup.classList.remove('active');
+                }
+                // 关闭关于弹窗
+                const aboutPopup = document.getElementById('about-popup');
+                if (aboutPopup && aboutPopup.classList.contains('active')) {
+                    aboutPopup.classList.remove('active');
+                }
+                // 关闭密码弹窗（如果启用）
+                const passwordModal = document.getElementById('password-modal');
+                if (passwordModal && passwordModal.style.display !== 'none') {
+                    passwordModal.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
+            }
+        });
+
+        // 滚动到顶部
+        const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
+        // 滚动到底部
+        const scrollToBottomBtn = document.getElementById('scroll-to-bottom-btn');
+        // iframe
+        const softwareListIframe = document.getElementById('software-list-iframe');
+
+        // 让按钮控制主页面滚动
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        scrollToBottomBtn.addEventListener('click', () => {
+            window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+        });
+
+        // 搜索索引功能
+        const searchInput = document.querySelector('header .search input');
+        const softwareTitles = Array.from(document.querySelectorAll('.software-title'));
+        const softwareTitleMap = softwareTitles.map(card => {
+            const h2 = card.querySelector('.title h2');
+            const icon = card.querySelector('.header .actions button:first-child i');
+            return {
+                name: h2 ? h2.textContent.trim().toLowerCase() : '',
+                card,
+                h2,
+                icon
+            };
+        });
+
+        // 新增：同步搜索关键词到 iframe
+        searchInput.addEventListener('input', function () {
+            const keyword = this.value.trim();
+            softwareListIframe.contentWindow.postMessage({ type: 'search', keyword }, '*');
+            let firstMatch = null;
+            softwareTitleMap.forEach(({ name, card, h2, icon }) => {
+                if (!keyword || name.includes(keyword)) {
+                    card.style.display = '';
+                    // 高亮匹配
+                    if (keyword && h2) {
+                        const idx = name.indexOf(keyword);
+                        if (idx !== -1) {
+                            const raw = h2.textContent;
+                            h2.innerHTML = raw.substring(0, idx)
+                                + '<mark style="background: #ffe4b3; color: #d35400;">'
+                                + raw.substring(idx, idx + keyword.length)
+                                + '</mark>'
+                                + raw.substring(idx + keyword.length);
+                        }
+                    } else if (h2) {
+                        h2.innerHTML = h2.textContent; // 清除高亮
+                    }
+                    if (!firstMatch && card.style.display !== 'none') firstMatch = card;
+                } else {
+                    card.style.display = 'none';
+                    if (h2) h2.innerHTML = h2.textContent; // 清除高亮
+                }
+                // 根据展开状态设置图标颜色
+                const softwareContent = card.querySelector('.software-content');
+                const isOpen = softwareContent.style.display === 'block';
+                icon.style.color = isOpen ? 'orange' : '#666'; 
+            });
+        });
+
+        // 回车跳转到第一个匹配项
+        searchInput.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter') {
+                const keyword = this.value.trim().toLowerCase();
+                if (!keyword) return;
+                const match = softwareTitleMap.find(({ name, card }) =>
+                    name.includes(keyword) && card.style.display !== 'none'
+                );
+                if (match) {
+                    match.card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    setTimeout(() => {
+                        const header = document.querySelector('header');
+                        const headerHeight = header ? header.offsetHeight : 0;
+                        window.scrollBy({ top: -headerHeight - 10, left: 0, behavior: 'instant' });
+                    }, 400);
+                    flashTitleColor(match.h2);
+                }
+            }
+        });
+
+        // 刷新按钮功能：刷新整个页面，确保密码验证弹窗重新出现
+        const refreshBtn = document.getElementById('refresh-btn');
+        refreshBtn.addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'instant' });
+            window.location.reload();
+        });
+
+        // 页面加载时自动滚动到顶部，确保刷新后主页面滚动条归位
+        (function() {
+    // 尝试阻止浏览器恢复滚动位置
+    if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+    }
+    // 立即滚动到顶部
+    window.scrollTo(0, 0);
+    // 某些浏览器需要延迟再滚一次
+    window.addEventListener('DOMContentLoaded', function() {
+        window.scrollTo(0, 0);
+        setTimeout(function() {
+            window.scrollTo(0, 0);
+        }, 0);
+    });
+})();
+
+        // 邮件弹窗逻辑
+        const emailLink = document.getElementById('email-link');
+        const emailPopup = document.getElementById('email-popup');
+        const emailPopupClose = document.getElementById('email-popup-close');
+        if(emailLink && emailPopup && emailPopupClose){
+            emailLink.addEventListener('click', function(e){
+                e.preventDefault();
+                emailPopup.classList.add('active');
+            });
+            emailPopupClose.addEventListener('click', function(){
+                emailPopup.classList.remove('active');
+            });
+            emailPopup.querySelector('.email-popup-mask').addEventListener('click', function(){
+                emailPopup.classList.remove('active');
+            });
+        }
+
+        // 关于弹窗逻辑
+        const aboutLink = document.getElementById('about-link');
+        const aboutPopup = document.getElementById('about-popup');
+        const aboutPopupClose = document.getElementById('about-popup-close');
+        if(aboutLink && aboutPopup && aboutPopupClose){
+            aboutLink.addEventListener('click', function(e){
+                e.preventDefault();
+                aboutPopup.classList.add('active');
+            });
+            aboutPopupClose.addEventListener('click', function(){
+                aboutPopup.classList.remove('active');
+            });
+            aboutPopup.querySelector('.email-popup-mask').addEventListener('click', function(){
+                aboutPopup.classList.remove('active');
+            });
+        }
+
+        // Adobe分类点击时载入software-list.html到iframe
+        document.getElementById('adobe-category-btn').addEventListener('click', function() {
+            var iframe = document.getElementById('software-list-iframe');
+            // 每次点击都切换页面
+            iframe.src = 'software-list.html';
+        });
+
+
+     
+        // ========== 主页面滚动到顶/底时自动聚焦iframe（无需鼠标操作） ==========
+        // 只要主页面滚动到顶/底，自动让iframe获得焦点
+        window.addEventListener('scroll', function () {
+            const iframe = document.getElementById('software-list-iframe');
+            if (!iframe) return;
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const winHeight = window.innerHeight || document.documentElement.clientHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            if (scrollTop <= 0 || scrollTop + winHeight >= docHeight - 2) {
+                // 到顶或到底，自动聚焦iframe
+                try { iframe.contentWindow.focus(); } catch (e) {}
+            }
+        });
+
+        // ========== 监听iframe滚动状态，自动聚焦主页面 ==========
+        window.addEventListener('message', function(event) {
+            // 可根据需要校验 event.origin
+            if (event.data && event.data.type === 'iframeScroll') {
+                // 只要iframe滚动到顶部或底部，主页面自动聚焦
+                try { window.focus(); document.body.focus(); } catch (e) {}
+            }
+        });
+
+        // ========== 自动聚焦iframe，无需鼠标悬停 ==========
+        // 只要iframe获得任何点击、滚轮、键盘等事件，自动聚焦iframe
+        (function() {
+            const iframe = document.getElementById('software-list-iframe');
+            if (!iframe) return;
+            // 鼠标点击iframe自动聚焦
+            iframe.addEventListener('load', function() {
+                // 监听iframe内的鼠标/键盘/滚轮事件
+                try {
+                    iframe.contentWindow.document.addEventListener('mousedown', function() {
+                        iframe.contentWindow.focus();
+                    });
+                    iframe.contentWindow.document.addEventListener('wheel', function() {
+                        iframe.contentWindow.focus();
+                    });
+                    iframe.contentWindow.document.addEventListener('keydown', function() {
+                        iframe.contentWindow.focus();
+                    });
+                } catch (e) {
+                    // 跨域iframe无法直接监听
+                }
+            });
+        })();
+
+
+        // 密码验证功能开关 false 或 true
+        const passwordCheckEnabled = false;
+        (function() {
+            if (!passwordCheckEnabled) {
+                document.getElementById('password-modal').style.display = 'none';
+                document.body.style.overflow = '';
+                return;
+            }
+            const modal = document.getElementById('password-modal');
+            const input = document.getElementById('password-input');
+            const toggle = document.getElementById('toggle-password');
+            const submit = document.getElementById('password-submit');
+            const error = document.getElementById('password-error');
+            document.body.style.overflow = 'hidden';
+
+            function getBeijingDate() {
+                const now = new Date();
+                const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+                return new Date(utc + 8 * 3600000);
+            }
+            function getTodayPassword() {
+                const d = getBeijingDate();
+                const mm = String(d.getMonth() + 1).padStart(2, '0');
+                const dd = String(d.getDate()).padStart(2, '0');
+                return mm + dd;
+            }
+            function showError(msg) {
+                error.textContent = msg;
+                error.style.opacity = 1;
+                setTimeout(() => {
+                    error.style.opacity = 0;
+                }, 1800);
+            }
+            function unlock() {
+                modal.style.display = 'none';
+                document.body.style.overflow = '';
+            }
+            function checkPassword() {
+                const val = input.value.trim();
+                if (val === getTodayPassword()) {
+                    unlock();
+                } else {
+                    showError('密码错误，请关注公众号获取今日密码');
+                    input.value = '';
+                    input.focus();
+                }
+            }
+            toggle.onclick = function() {
+                if (input.type === 'password') {
+                    input.type = 'text';
+                    toggle.classList.add('active');
+                    toggle.classList.remove('fa-eye');
+                    toggle.classList.add('fa-eye-slash');
+                } else {
+                    input.type = 'password';
+                    toggle.classList.remove('active');
+                    toggle.classList.remove('fa-eye-slash');
+                    toggle.classList.add('fa-eye');
+                }
+                input.focus();
+            };
+            input.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    checkPassword();
+                }
+            });
+            submit.addEventListener('click', checkPassword);
+            modal.querySelector('.password-mask').addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+            setTimeout(() => { input.focus(); }, 200);
+            window.addEventListener('keydown', function(e) {
+                if (modal.style.display !== 'none') {
+                    if (!modal.contains(document.activeElement)) input.focus();
+                    if (['F12'].includes(e.key) || (e.ctrlKey && ['u','U','s','S'].includes(e.key))) {
+                        e.preventDefault();
+                    }
+                }
+            }, true);
+            window.addEventListener('scroll', function(e) {
+                if (modal.style.display !== 'none') window.scrollTo(0,0);
+            });
+        })();
+
+        // ========== 默认iframe显示的网页的开关 ==========
+        const defaultIframeEnabled = false; // true false 
+        if (defaultIframeEnabled) {
+            document.getElementById('software-list-iframe').src = 'ps.html';
+        }
+
+        // ========== 默认主页面背景图的开关 ==========
+        const defaultBgImageEnabled = true; // true false
+        (function() {
+            const styleId = 'default-bg-image-style';
+            let styleTag = document.getElementById(styleId);
+            if (defaultBgImageEnabled) {
+                if (!styleTag) {
+                    styleTag = document.createElement('style');
+                    styleTag.id = styleId;
+                    styleTag.innerHTML =
+                        "body { background: url(https://picsum.photos/1600/900/?nature,animal,rain,sea,starry) no-repeat center center fixed; -webkit-background-size: cover; -o-background-size: cover; background-size: cover; }";
+                    document.head.appendChild(styleTag);
+                }
+            } else {
+                if (styleTag) styleTag.remove();
+            }
+        })();
+    </script>
+</body>
+
+</html>

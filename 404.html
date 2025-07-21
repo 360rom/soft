@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>404 未找到页面</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+    .container {
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      padding: 64px 40px;
+      max-width: 480px;
+      width: 95%;
+      text-align: center;
+    }
+    .error-code {
+      font-size: 96px;
+      font-weight: bold;
+      color: #3b82f6;
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+    .error-msg {
+      font-size: 28px;
+      color: #334155;
+      margin-bottom: 24px;
+    }
+    .home-btn {
+      display: inline-block;
+      background: #3b82f6;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 16px 40px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: background 0.2s;
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+    .home-btn:hover {
+      background: #2563eb;
+    }
+    .countdown {
+      font-size: 18px;
+      color: #64748b;
+      margin-top: 8px;
+    }
+    @media (max-width: 480px) {
+      .container {
+        padding: 40px 8px;
+        max-width: 99vw;
+      }
+      .error-code {
+        font-size: 64px;
+      }
+      .error-msg {
+        font-size: 20px;
+      }
+      .home-btn {
+        font-size: 16px;
+        padding: 12px 24px;
+      }
+      .countdown {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="error-code">404</div>
+    <div class="error-msg">很抱歉，页面未找到</div>
+    <a href="index.html" class="home-btn" id="homeBtn">返回首页</a>
+    <div class="countdown" id="countdown"></div>
+  </div>
+  <script>
+    // 控制是否开启倒计时跳转
+    const enableCountdown = true ; // true false 
+
+    const countdownEl = document.getElementById('countdown');
+    const homeBtn = document.getElementById('homeBtn');
+    let seconds = 5;
+
+    function updateCountdown() {
+      countdownEl.textContent = enableCountdown
+        ? `将在 ${seconds} 秒后自动返回首页...`
+        : '';
+    }
+
+    updateCountdown();
+
+    if (enableCountdown) {
+      const timer = setInterval(() => {
+        seconds--;
+        updateCountdown();
+        if (seconds <= 0) {
+          clearInterval(timer);
+          window.location.href = homeBtn.href;
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,2418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>软件列表</title>
+    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<script src="https://at.alicdn.com/t/c/font_4976428_tswk5m0r16k.js"></script>
+   <style type="text/css">
+    .icon {
+       width: 2em; height: 2em;
+       vertical-align: -0.15em;
+       fill: currentColor;
+       overflow: hidden;
+    }
+</style>
+		 <style>
+        
+        .software-item-bg {
+            background: #f3f3f3;
+            border-radius: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .software-item {
+            margin-bottom: 0.2rem; /* 缩小底部间距 */
+            padding: 0; /* 移除多余内边距 */
+        }
+
+        /* 调整小圆圈初始位置更靠左 */
+        #softwareToggleBtn {
+            /* ...existing inline styles... */
+            position: relative;
+            width: 2.8rem;
+            height: 1.5rem;
+            background: #eee;
+            border: none;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: background 0.3s;
+            padding: 0;
+        }
+
+        #softwareToggleKnob {
+            display: block;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: white;
+            border-radius: 50%;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            /* 让关闭时更靠左 */
+            transform: translateX(0.1rem);
+        }
+
+        /* 修正: 保证软件内容始终被父容器包裹 */
+        .software-content {
+            /* 保证内容不脱离文档流 */
+            position: static !important;
+            width: 100%;
+            box-sizing: border-box;
+            /* 避免内容溢出 */
+            overflow: visible;
+        }
+        
+/* 右侧软件列表相关样式 */
+section {
+    width: 100%;
+}
+
+@media (min-width: 1024px) {
+    section {
+        width: 75%;
+    }
+}
+
+@media (min-width: 1280px) {
+    section {
+        width: 80%;
+    }
+}
+/* 调整右侧列表间距 */
+section .software-title {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 0.6rem 1rem;
+    margin-bottom: 0.5rem;
+}
+
+section .software-title .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+section .software-title .header .title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+section .software-title .header .title i {
+    color: var(--primary);
+    font-size: 1.5rem;
+}
+
+section .software-title .header .title h2 {
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+section .software-title .header .actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+section .software-title .header .actions button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+section .software-title .header .actions button:hover {
+    color: var(--primary);
+}
+
+section .software-title .software-content {
+    margin-top: 1rem;
+    display: none;
+}
+
+section .software-title .software-content .software-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.4rem; /* 缩小子项间距 */
+}
+
+section .software-title .software-content .software-list .software-item {
+    background: var(--lightgray);
+    border-radius: 0.25rem;
+    padding: 0.3rem 0.7rem; /* 缩小内边距 */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+section .software-title .software-content .software-list .software-item .actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+section .software-title .software-content .software-list .software-item .actions button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+section .software-title .software-content .software-list .software-item .actions button:hover {
+    color: var(--primary);
+}
+
+/* 暗夜模式样式 */
+html.dark section .software-title {
+    background: #23272f;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.45);
+}
+
+html.dark section .software-title .header .title h2 {
+    color: #e5e7eb;
+}
+
+html.dark section .software-title .header .actions button {
+    color: #bdbdbd;
+}
+
+html.dark section .software-title .header .actions button:hover {
+    color: var(--primary);
+}
+
+html.dark section .software-title .software-content .software-list .software-item {
+    background: #23272f;
+}
+
+html.dark section .software-title .software-content .software-list .software-item .actions button {
+    color: #bdbdbd;
+}
+
+html.dark section .software-title .software-content .software-list .software-item .actions button:hover {
+    color: var(--primary);
+}
+
+/* 移除 sticky 相关样式 */
+section .software-title.pinned {
+    border: 2px solid #ff3333;
+    box-shadow: 0 4px 24px rgba(255, 51, 51, 0.08);
+    background: white;
+    z-index: 100; /* 置顶基础层级 */
+}
+
+html.dark section .software-title.pinned {
+    background: #23272f;
+    border-color: #ff3333;
+}
+
+/* 新增：钉住时悬浮样式 */
+.software-title.pinned-float {
+    /* position: fixed !important;  // 移除fixed，钉住只加高亮，不悬浮 */
+    box-shadow: 0 8px 32px rgba(255,51,51,0.12);
+}
+
+/* 新增：钉住卡片允许 top 定位 */
+.software-title.pinned {
+    position: sticky;
+    z-index: 101;
+}
+
+/* 新增：钉住卡片依次错开显示的动画过渡 */
+.software-title.pinned {
+    transition: top 0.25s cubic-bezier(.4,2,.6,1);
+}
+
+/* 修复图钉按钮消失问题，确保 .fa-unthumb-tack 也有合适的显示 */
+.fa-unthumb-tack:before {
+    content: "\f08d";
+}
+
+/* 滚动条美化（浅色模式） */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #ffe4b3 0%, #ffb347 100%);
+    border-radius: 6px;
+    min-height: 30px;
+    box-shadow: 0 2px 8px rgba(255,179,71,0.12);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #ffb347 0%, #ff8800 100%);
+}
+::-webkit-scrollbar-track {
+    background: #f3f3f3;
+    border-radius: 6px;
+}
+/* Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: #ffb347 #f3f3f3;
+}
+
+/* 暗夜模式滚动条 */
+html.dark ::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #444 0%, #ff8800 100%);
+}
+html.dark ::-webkit-scrollbar-track {
+    background: #23272f;
+}
+html.dark {
+    scrollbar-color: #ff8800 #23272f;
+}
+
+/* 每张卡片顶部留白，营造书页效果 */
+.software-title {
+    margin-top: 1.2rem; /* 适当留白，可根据需要调整 */
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06), 0 1.5px 0 #f3f3f3 inset;
+    border-top: 1px solid #f3f3f3;
+    position: relative; /* 新增：确保弹窗绝对定位于卡片内 */
+}
+/* 第一张卡片不需要额外留白 */
+section .software-title:first-of-type {
+    margin-top: 0.5rem;
+}
+/* 钉住卡片也保留顶部间距 */
+.software-title.pinned,
+.software-title.pinned-float {
+    margin-top: 2.2rem !important;
+    z-index: 101;
+}
+/* 最后一张卡片底部留白，防止被遮挡 */
+section .software-title:last-of-type {
+    margin-bottom: 2.5rem;
+}
+/* 暗夜模式下分隔线颜色调整 */
+html.dark .software-title {
+    border-top: 1px solid #23272f;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.18), 0 1.5px 0 #23272f inset;
+}
+
+/* 钉住序号样式 */
+        .pin-order-badge {
+            display: inline-block;
+            min-width: 1.2em;
+            margin-left: 0.5em;
+            padding: 0.1em 0.5em;
+            font-size: 0.95em;
+            font-weight: bold;
+            color: orange;
+            background: #fff3e0;
+            border-radius: 1em;
+            vertical-align: middle;
+        }
+        html.dark .pin-order-badge {
+            background: #3a2c13;
+            color: #ffb347;
+        }
+
+        /* 新增：复制按钮点击后变为橙色 */
+.copy-title-btn.copied i {
+    color: orange !important;
+}
+
+/* 新增：锁定状态样式 */
+.software-title.locked {
+    opacity: 0.85;
+    cursor: not-allowed;
+}
+.software-title.locked .header .actions button.lock-btn i {
+    color: #ff9800 !important;
+}
+.software-title.locked {
+    /* 拖动时视觉提示 */
+    box-shadow: 0 0 0 2px #ff9800 !important;
+}
+ /* 新增刷新按钮样式 */
+        #refresh-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            transition: color 0.3s;
+            font-size: 1.2rem; /* 增大图标大小 */
+            padding: 0.3rem; /* 添加内边距 */
+        }
+
+        #refresh-btn:hover {
+            color: var(--primary);
+        }
+
+    </style>
+</head>
+
+<body>
+    <!-- 右侧软件列表 -->
+    <section>
+            <!-- 新增全局折叠/展开按钮和暗夜模式切换 -->
+            <div class="toggle" style="margin-bottom:1rem;display:flex;align-items:center;gap:1rem;">
+                <h2 style="font-size:1.1rem;font-weight:bold;margin:0;">软件列表</h2>
+                <button id="softwareToggleBtn" style="position:relative;width:2.8rem;height:1.5rem;background:#eee;border:none;border-radius:1rem;display:flex;align-items:center;cursor:pointer;transition:background 0.3s;">
+                    <span id="softwareToggleKnob" style="display:block;width:1.5rem;height:1.5rem;background:white;border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.1);transition:transform 0.3s,box-shadow 0.3s;"></span>
+                </button>
+                <button id="darkModeBtn" title="暗夜模式" style="background:none;border:none;cursor:pointer;font-size:1.3rem;color:#666;transition:color 0.3s;">
+                    <i class="fa fa-moon-o"></i>
+                </button>
+                <button id="refresh-btn" title="刷新" onclick="location.reload()">
+                <i class="fa fa-refresh"></i>
+            </button>
+            </div>
+            
+            <div id="3dsMax" class="software-title">
+                <div class="header">
+                    <div class="title">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-a-Autodesk3dsMax2023"></use>
+                        </svg>
+                        <h2 onclick="toggleSoftwareContent(this.closest('.software-title').querySelector('.header .actions button:first-child'))">3ds Max</h2>
+                    </div>
+                    <div class="actions">
+                        <button onclick="toggleSoftwareContent(this)">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button onclick="pinSoftware(this, '3dsMax')">
+                            <i class="fa fa-thumb-tack"></i>
+                        </button>
+                        <button class="copy-title-btn" title="标题复制" onclick="copySoftwareTitle(this)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                        <button title="软件链接" onclick="event.preventDefault()">
+                            <i class="fa fa-folder-open-o "></i>
+                        </button>
+                        <button title="安装教程" onclick="event.preventDefault()">
+                            <i class="fa fa-book"></i>
+                        </button>
+                        <button class="lock-btn" title="锁定/解锁拖动" onclick="toggleLock(this)">
+                            <i class="fa fa-unlock"></i>
+                        </button>
+                        <button title="视频教程" onclick="event.preventDefault()">
+                            <i class="fa fa-file-video-o "></i>
+                        </button>
+                        <button title="提示" onclick="showCopyrightAlert(event)">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="software-content">
+                    <div class="software-list">
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2025</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2024</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2023</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2022</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2021</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2020</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2019</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2018</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2017</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2016</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2015</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2014</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2013</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2012</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2011</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2010</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>3ds Max2009</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Artlantis" class="software-title">
+                <div class="header">
+                    <div class="title">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-Artlantis"></use>
+                        </svg>
+                        <h2 onclick="toggleSoftwareContent(this.closest('.software-title').querySelector('.header .actions button:first-child'))">Artlantis</h2>
+                    </div>
+                    <div class="actions">
+                        <button onclick="toggleSoftwareContent(this)">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button onclick="pinSoftware(this, 'Artlantis')">
+                            <i class="fa fa-thumb-tack"></i>
+                        </button>
+                        <button class="copy-title-btn" title="标题复制" onclick="copySoftwareTitle(this)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                        <button title="软件链接" onclick="event.preventDefault()">
+                            <i class="fa fa-folder-open-o "></i>
+                        </button>
+                        <button title="安装教程" onclick="event.preventDefault()">
+                            <i class="fa fa-book"></i>
+                        </button>
+                        <button class="lock-btn" title="锁定/解锁拖动" onclick="toggleLock(this)">
+                            <i class="fa fa-unlock"></i>
+                        </button>
+                        <button title="视频教程" onclick="event.preventDefault()">
+                            <i class="fa fa-file-video-o "></i>
+                        </button>
+                        <button title="提示" onclick="showCopyrightAlert(event)">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="software-content">
+                    <div class="software-list">
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Artlantis 2021</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Artlantis 2020</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Artlantis 2019</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="CorelCAD" class="software-title">
+                <div class="header">
+                    <div class="title">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-CorelCAD"></use>
+                        </svg>
+                        <h2 onclick="toggleSoftwareContent(this.closest('.software-title').querySelector('.header .actions button:first-child'))">CorelCAD</h2>
+                    </div>
+                    <div class="actions">
+                        <button onclick="toggleSoftwareContent(this)">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button onclick="pinSoftware(this, 'CorelCAD')">
+                            <i class="fa fa-thumb-tack"></i>
+                        </button>
+                        <button class="copy-title-btn" title="标题复制" onclick="copySoftwareTitle(this)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                        <button title="软件链接" onclick="event.preventDefault()">
+                            <i class="fa fa-folder-open-o "></i>
+                        </button>
+                        <button title="安装教程" onclick="event.preventDefault()">
+                            <i class="fa fa-book"></i>
+                        </button>
+                        <button class="lock-btn" title="锁定/解锁拖动" onclick="toggleLock(this)">
+                            <i class="fa fa-unlock"></i>
+                        </button>
+                        <button title="视频教程" onclick="event.preventDefault()">
+                            <i class="fa fa-file-video-o "></i>
+                        </button>
+                        <button title="提示" onclick="showCopyrightAlert(event)">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="software-content">
+                    <div class="software-list">
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>CorelCAD 2023</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>CorelCAD 2021</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>CorelCAD 2020</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>CorelCAD 2019</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>CorelCAD 2018</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>CorelCAD 2017</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Lumion" class="software-title">
+                <div class="header">
+                    <div class="title">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-Lumion"></use>
+                        </svg>
+                        <h2 onclick="toggleSoftwareContent(this.closest('.software-title').querySelector('.header .actions button:first-child'))">Lumion</h2>
+                    </div>
+                    <div class="actions">
+                        <button onclick="toggleSoftwareContent(this)">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button onclick="pinSoftware(this, 'Lumion')">
+                            <i class="fa fa-thumb-tack"></i>
+                        </button>
+                        <button class="copy-title-btn" title="标题复制" onclick="copySoftwareTitle(this)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                        <button title="软件链接" onclick="event.preventDefault()">
+                            <i class="fa fa-folder-open-o "></i>
+                        </button>
+                        <button title="安装教程" onclick="event.preventDefault()">
+                            <i class="fa fa-book"></i>
+                        </button>
+                        <button class="lock-btn" title="锁定/解锁拖动" onclick="toggleLock(this)">
+                            <i class="fa fa-unlock"></i>
+                        </button>
+                        <button title="视频教程" onclick="event.preventDefault()">
+                            <i class="fa fa-file-video-o "></i>
+                        </button>
+                        <button title="提示" onclick="showCopyrightAlert(event)">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="software-content">
+                    <div class="software-list">
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Lumion9.0.2</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Lumion8.5</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Lumion6.0</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Lumion5.0</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Lumion4.5</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Lumion2023</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Lumion12.5</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Lumion12.0</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Lumion11</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Lumion10.0.0</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="SketchBook" class="software-title">
+                <div class="header">
+                    <div class="title">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#"></use>
+                        </svg>
+                        <h2 onclick="toggleSoftwareContent(this.closest('.software-title').querySelector('.header .actions button:first-child'))">SketchBook</h2>
+                    </div>
+                    <div class="actions">
+                        <button onclick="toggleSoftwareContent(this)">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button onclick="pinSoftware(this, 'SketchBook')">
+                            <i class="fa fa-thumb-tack"></i>
+                        </button>
+                        <button class="copy-title-btn" title="标题复制" onclick="copySoftwareTitle(this)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                        <button title="软件链接" onclick="event.preventDefault()">
+                            <i class="fa fa-folder-open-o "></i>
+                        </button>
+                        <button title="安装教程" onclick="event.preventDefault()">
+                            <i class="fa fa-book"></i>
+                        </button>
+                        <button class="lock-btn" title="锁定/解锁拖动" onclick="toggleLock(this)">
+                            <i class="fa fa-unlock"></i>
+                        </button>
+                        <button title="视频教程" onclick="event.preventDefault()">
+                            <i class="fa fa-file-video-o "></i>
+                        </button>
+                        <button title="提示" onclick="showCopyrightAlert(event)">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="software-content">
+                    <div class="software-list">
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchBook2022</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchBook2021</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchBook2020</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchBook2019</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchBook2018</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchBook2016</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchBook2015</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchBook2014</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="SketchUpPro" class="software-title">
+                <div class="header">
+                    <div class="title">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-SketchUpPro"></use>
+                        </svg>
+                        <h2 onclick="toggleSoftwareContent(this.closest('.software-title').querySelector('.header .actions button:first-child'))">SketchUp Pro</h2>
+                    </div>
+                    <div class="actions">
+                        <button onclick="toggleSoftwareContent(this)">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button onclick="pinSoftware(this, 'SketchUpPro')">
+                            <i class="fa fa-thumb-tack"></i>
+                        </button>
+                        <button class="copy-title-btn" title="标题复制" onclick="copySoftwareTitle(this)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                        <button title="软件链接" onclick="event.preventDefault()">
+                            <i class="fa fa-folder-open-o "></i>
+                        </button>
+                        <button title="安装教程" onclick="event.preventDefault()">
+                            <i class="fa fa-book"></i>
+                        </button>
+                        <button class="lock-btn" title="锁定/解锁拖动" onclick="toggleLock(this)">
+                            <i class="fa fa-unlock"></i>
+                        </button>
+                        <button title="视频教程" onclick="event.preventDefault()">
+                            <i class="fa fa-file-video-o "></i>
+                        </button>
+                        <button title="提示" onclick="showCopyrightAlert(event)">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="software-content">
+                    <div class="software-list">
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchUpPro 2024</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchUpPro 2023</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchUpPro 2022</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchUpPro 2021</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchUpPro 2020</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchUpPro 2019</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchupPro 2018</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchupPro 2017</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchupPro 2016</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>SketchUpPro 2015</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="V-RayFor3dsMax" class="software-title">
+                <div class="header">
+                    <div class="title">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-a-V-Rayfor3dsmax2024forx64"></use>
+                        </svg>
+                        <h2 onclick="toggleSoftwareContent(this.closest('.software-title').querySelector('.header .actions button:first-child'))">V-Ray for 3dsMax</h2>
+                    </div>
+                    <div class="actions">
+                        <button onclick="toggleSoftwareContent(this)">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button onclick="pinSoftware(this, 'V-RayFor3dsMax')">
+                            <i class="fa fa-thumb-tack"></i>
+                        </button>
+                        <button class="copy-title-btn" title="标题复制" onclick="copySoftwareTitle(this)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                        <button title="软件链接" onclick="event.preventDefault()">
+                            <i class="fa fa-folder-open-o "></i>
+                        </button>
+                        <button title="安装教程" onclick="event.preventDefault()">
+                            <i class="fa fa-book"></i>
+                        </button>
+                        <button class="lock-btn" title="锁定/解锁拖动" onclick="toggleLock(this)">
+                            <i class="fa fa-unlock"></i>
+                        </button>
+                        <button title="视频教程" onclick="event.preventDefault()">
+                            <i class="fa fa-file-video-o "></i>
+                        </button>
+                        <button title="提示" onclick="showCopyrightAlert(event)">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="software-content">
+                    <div class="software-list">
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 6.2 for 3dsMax2019- 2024</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 6.1 for 3dsMax2019- 2024</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 6.0 for 3dsMax2018- 2023</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 5.2 for 3dsMax2019- 2022</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 5.1 for 3dsMax2016- 2022</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 5.05 for 3dsMax2018- 2021</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 4.3 for 3dsMax2020</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 4.1 for 3dMax2013-2019</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="V-Ray for Rhino" class="software-title">
+                <div class="header">
+                    <div class="title">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-a-V-Rayfor3dsmax2024forx64"></use>
+                        </svg>
+                        <h2 onclick="toggleSoftwareContent(this.closest('.software-title').querySelector('.header .actions button:first-child'))">V-Ray for Rhino</h2>
+                    </div>
+                    <div class="actions">
+                        <button onclick="toggleSoftwareContent(this)">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button onclick="pinSoftware(this, 'V-RayForRhino')">
+                            <i class="fa fa-thumb-tack"></i>
+                        </button>
+                        <button class="copy-title-btn" title="标题复制" onclick="copySoftwareTitle(this)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                        <button title="软件链接" onclick="event.preventDefault()">
+                            <i class="fa fa-folder-open-o "></i>
+                        </button>
+                        <button title="安装教程" onclick="event.preventDefault()">
+                            <i class="fa fa-book"></i>
+                        </button>
+                        <button class="lock-btn" title="锁定/解锁拖动" onclick="toggleLock(this)">
+                            <i class="fa fa-unlock"></i>
+                        </button>
+                        <button title="视频教程" onclick="event.preventDefault()">
+                            <i class="fa fa-file-video-o "></i>
+                        </button>
+                        <button title="提示" onclick="showCopyrightAlert(event)">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="software-content">
+                    <div class="software-list">
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-ray 6.0 for Rhino6-8</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 5.2 for Rhino6-8</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 5.1 for Rhino6-7</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 4.2 for Rhino5-7</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 4.1 for Rhino5-6</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="V-RayForSketchUp" class="software-title">
+                <div class="header">
+                    <div class="title">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-a-V-Rayfor3dsmax2024forx64"></use>
+                        </svg>
+                        <h2 onclick="toggleSoftwareContent(this.closest('.software-title').querySelector('.header .actions button:first-child'))">V-Ray for SketchUp</h2>
+                    </div>
+                    <div class="actions">
+                        <button onclick="toggleSoftwareContent(this)">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button onclick="pinSoftware(this, 'V-RayForSketchUp')">
+                            <i class="fa fa-thumb-tack"></i>
+                        </button>
+                        <button class="copy-title-btn" title="标题复制" onclick="copySoftwareTitle(this)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                        <button title="软件链接" onclick="event.preventDefault()">
+                            <i class="fa fa-folder-open-o "></i>
+                        </button>
+                        <button title="安装教程" onclick="event.preventDefault()">
+                            <i class="fa fa-book"></i>
+                        </button>
+                        <button class="lock-btn" title="锁定/解锁拖动" onclick="toggleLock(this)">
+                            <i class="fa fa-unlock"></i>
+                        </button>
+                        <button title="视频教程" onclick="event.preventDefault()">
+                            <i class="fa fa-file-video-o "></i>
+                        </button>
+                        <button title="提示" onclick="showCopyrightAlert(event)">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="software-content">
+                    <div class="software-list">
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 6.1 for SketchUp2019-2023</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 6.0 for SketchUp2019-2022</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 5.2 for SketchUp2019-2022</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 5.1 for SketchUp2017-2021</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 4.2 for SketchUp2016-2020</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>V-Ray 4.1 for SketchUp2016-2019</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="blender" class="software-title">
+                <div class="header">
+                    <div class="title">
+                        <svg class="icon" aria-hidden="true">
+                            <use xlink:href="#icon-Blender"></use>
+                        </svg>
+                        <h2 onclick="toggleSoftwareContent(this.closest('.software-title').querySelector('.header .actions button:first-child'))">blender</h2>
+                    </div>
+                    <div class="actions">
+                        <button onclick="toggleSoftwareContent(this)">
+                            <i class="fa fa-chevron-down"></i>
+                        </button>
+                        <button onclick="pinSoftware(this, 'blender')">
+                            <i class="fa fa-thumb-tack"></i>
+                        </button>
+                        <button class="copy-title-btn" title="标题复制" onclick="copySoftwareTitle(this)">
+                            <i class="fa fa-copy"></i>
+                        </button>
+                        <button title="软件链接" onclick="event.preventDefault()">
+                            <i class="fa fa-folder-open-o "></i>
+                        </button>
+                        <button title="安装教程" onclick="event.preventDefault()">
+                            <i class="fa fa-book"></i>
+                        </button>
+                        <button class="lock-btn" title="锁定/解锁拖动" onclick="toggleLock(this)">
+                            <i class="fa fa-unlock"></i>
+                        </button>
+                        <button title="视频教程" onclick="event.preventDefault()">
+                            <i class="fa fa-file-video-o "></i>
+                        </button>
+                        <button title="提示" onclick="showCopyrightAlert(event)">
+                            <i class="fa fa-ban"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="software-content">
+                    <div class="software-list">
+                        <div class="software-item">
+                            <div class="software-item-bg">
+                                <span>Blender</span>
+                                <div class="actions">
+                                    <button title="下载">
+                                        <i class="fa fa-download"></i>
+                                    </button>
+                                    <button title="云盘">
+                                        <i class="fa fa-cloud"></i>
+                                    </button>
+                                    <button title="使用教程">
+                                        <i class="fa fa-play-circle"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </section>    
+
+    <script>
+    // 软件内容展开/收起
+    function toggleSoftwareContent(button) {
+        const softwareTitle = button.closest('.software-title');
+        const softwareContent = softwareTitle.querySelector('.software-content');
+        const icon = button.querySelector('i');
+        const isOpen = softwareContent.style.display === 'block';
+        softwareContent.style.display = isOpen ? 'none' : 'block';
+        icon.classList.toggle('fa-chevron-down', isOpen);
+        icon.classList.toggle('fa-chevron-up', !isOpen);
+        icon.style.color = isOpen ? '#666' : 'orange';
+    }
+    // 钉住序号刷新函数
+    function updatePinOrderBadges() {
+        // 获取所有已钉住卡片
+        const pinnedCards = Array.from(document.querySelectorAll('.software-title.pinned'));
+        pinnedCards.forEach((card, idx) => {
+            const actions = card.querySelector('.header .actions');
+            let badge = actions.querySelector('.pin-order-badge');
+            if (!badge) {
+                badge = document.createElement('span');
+                badge.className = 'pin-order-badge';
+                actions.appendChild(badge);
+            }
+            badge.textContent = idx + 1;
+        });
+        // 移除未钉住卡片上的序号
+        document.querySelectorAll('.software-title:not(.pinned) .pin-order-badge').forEach(badge => badge.remove());
+    }
+
+    // 固定软件标题
+    function pinSoftware(button, id) {
+        const softwareTitle = document.getElementById(id);
+        const icon = button.querySelector('i');
+        const section = softwareTitle.parentNode;
+        const toggleDiv = section.querySelector('.toggle');
+        if (!softwareTitle.classList.contains('pinned')) {
+            // 钉住：用 sticky 替代 fixed
+            softwareTitle.classList.add('pinned', 'pinned-float');
+            softwareTitle.style.position = 'sticky';
+            softwareTitle.style.top = '0';
+            softwareTitle.style.left = '';
+            softwareTitle.style.width = '';
+            softwareTitle.style.boxSizing = '';
+            icon.classList.remove('fa-thumb-tack');
+            icon.classList.add('fa-unthumb-tack');
+            icon.style.color = 'orange'; // 钉住后变橙色
+            // 记录原始索引
+            const siblings = Array.from(section.children).filter(c => c.classList && c.classList.contains('software-title'));
+            const originIndex = siblings.indexOf(softwareTitle);
+            softwareTitle.setAttribute('data-origin-index', originIndex);
+            // 新增：插入到所有已钉住卡片的最后（即所有未钉住卡片的最前面）
+            let afterToggle = toggleDiv.nextElementSibling;
+            let lastPinned = afterToggle;
+            while (lastPinned && lastPinned.classList && lastPinned.classList.contains('pinned')) {
+                lastPinned = lastPinned.nextElementSibling;
+            }
+            // lastPinned 现在是第一个未钉住卡片或 null
+            section.insertBefore(softwareTitle, lastPinned);
+            // 新增：刷新钉住序号
+            updatePinOrderBadges();
+            // 新增：排列钉住卡片
+            arrangePinnedCards();
+        } else {
+            // 取消钉住：恢复原状
+            softwareTitle.classList.remove('pinned', 'pinned-float');
+            softwareTitle.style.position = '';
+            softwareTitle.style.top = '';
+            softwareTitle.style.left = '';
+            softwareTitle.style.width = '';
+            softwareTitle.style.boxSizing = '';
+            icon.classList.remove('fa-unthumb-tack');
+            icon.classList.add('fa-thumb-tack');
+            icon.style.color = ''; // 恢复默认颜色
+            // 恢复原始顺序
+            const siblings = Array.from(section.children).filter(c => c.classList && c.classList.contains('software-title') && c !== softwareTitle);
+            let originIndex = parseInt(softwareTitle.getAttribute('data-origin-index'), 10);
+            if (!isNaN(originIndex)) {
+                // 计算插入位置
+                // 跳过toggle按钮，插入到正确的卡片前
+                let insertBeforeNode = null;
+                let count = 0;
+                for (let i = 0; i < section.children.length; i++) {
+                    const node = section.children[i];
+                    if (node.classList && node.classList.contains('software-title') && node !== softwareTitle) {
+                        if (count === originIndex) {
+                            insertBeforeNode = node;
+                            break;
+                        }
+                        count++;
+                    }
+                }
+                if (insertBeforeNode) {
+                    section.insertBefore(softwareTitle, insertBeforeNode);
+                } else {
+                    section.appendChild(softwareTitle);
+                }
+            }
+            softwareTitle.removeAttribute('data-origin-index');
+            // 新增：刷新钉住序号
+            updatePinOrderBadges();
+            // 新增：排列钉住卡片
+            arrangePinnedCards();
+        }
+    }
+
+    // 新增：排列所有钉住卡片，依次错开
+    function arrangePinnedCards() {
+        const pinned = Array.from(document.querySelectorAll('.software-title.pinned'));
+        const baseTop = 0; // 距离顶部的基础距离
+        const gap = 16;    // 每张卡片之间的间隔(px)
+        pinned.forEach((card, idx) => {
+            card.style.top = (baseTop + idx * gap) + 'px';
+        });
+    }
+
+    // 新增：锁定/解锁拖动功能
+    function toggleLock(btn) {
+        const card = btn.closest('.software-title');
+        const icon = btn.querySelector('i');
+        if (card.classList.contains('locked')) {
+            card.classList.remove('locked');
+            icon.classList.remove('fa-lock');
+            icon.classList.add('fa-unlock');
+            card.setAttribute('draggable', 'true');
+        } else {
+            card.classList.add('locked');
+            icon.classList.remove('fa-unlock');
+            icon.classList.add('fa-lock');
+            card.setAttribute('draggable', 'false');
+        }
+    }
+
+    // 卡片拖动排序 + 键盘辅助
+    let dragSrc = null;
+    let dragging = false;
+    let keyboardSelected = null;
+    const cards = document.querySelectorAll('.software-title');
+    cards.forEach(card => {
+        card.setAttribute('draggable', card.classList.contains('locked') ? 'false' : 'true');
+        card.setAttribute('tabindex', '0'); // 可聚焦
+        // 鼠标拖动
+        card.addEventListener('dragstart', function(e) {
+            if (this.classList.contains('locked')) {
+                e.preventDefault();
+                return false;
+            }
+            dragSrc = this;
+            dragging = true;
+            this.style.opacity = '0.6';
+            this.style.transform = 'scale(1.03)';
+            this.style.boxShadow = '0 8px 32px orange';
+            // 其他卡片半透明
+            cards.forEach(c => { if (c !== this) c.style.opacity = '0.4'; });
+            e.dataTransfer.effectAllowed = 'move';
+            e.dataTransfer.setData('text/plain', '');
+        });
+        card.addEventListener('dragend', function() {
+            this.style.opacity = '';
+            this.style.transform = '';
+            this.style.boxShadow = '';
+            cards.forEach(c => c.style.opacity = '');
+            dragSrc = null;
+            dragging = false;
+            this.focus();
+        });
+        card.addEventListener('dragover', function(e) {
+            if (this.classList.contains('locked')) return;
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+        });
+        card.addEventListener('dragenter', function(e) {
+            if (this.classList.contains('locked')) return;
+            this.style.boxShadow = '0 0 0 3px orange';
+        });
+        card.addEventListener('dragleave', function(e) {
+            if (this.classList.contains('locked')) return;
+            this.style.boxShadow = '';
+        });
+        card.addEventListener('drop', function(e) {
+            if (this.classList.contains('locked')) return;
+            e.preventDefault();
+            cards.forEach(c => c.style.boxShadow = '');
+            if (dragSrc && dragSrc !== this) {
+                const parent = this.parentNode;
+                if (Array.from(parent.children).indexOf(dragSrc) < Array.from(parent.children).indexOf(this)) {
+                    parent.insertBefore(dragSrc, this.nextSibling);
+                } else {
+                    parent.insertBefore(dragSrc, this);
+                }
+                dragSrc.focus();
+            }
+        });
+        // 键盘辅助：选中/取消
+        card.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                if (keyboardSelected === this) {
+                    this.classList.remove('keyboard-selected');
+                    keyboardSelected = null;
+                } else {
+                    cards.forEach(c => c.classList.remove('keyboard-selected'));
+                    this.classList.add('keyboard-selected');
+                    keyboardSelected = this;
+                }
+            }
+            // 上下移动
+            if ((e.key === 'ArrowUp' || e.key === 'ArrowDown') && keyboardSelected === this) {
+                e.preventDefault();
+                const parent = this.parentNode;
+                const siblings = Array.from(parent.children).filter(c => c.classList.contains('software-title'));
+                const idx = siblings.indexOf(this);
+                if (e.key === 'ArrowUp' && idx > 0) {
+                    parent.insertBefore(this, siblings[idx - 1]);
+                    this.focus();
+                }
+                if (e.key === 'ArrowDown' && idx < siblings.length - 1) {
+                    parent.insertBefore(this, siblings[idx + 1].nextSibling);
+                    this.focus();
+                }
+            }
+            // Esc 取消选中
+            if (e.key === 'Escape' && keyboardSelected === this) {
+                this.classList.remove('keyboard-selected');
+                keyboardSelected = null;
+            }
+        });
+        // 视觉反馈
+        card.addEventListener('focus', function() {
+            this.style.outline = '2px solid orange';
+        });
+        card.addEventListener('blur', function() {
+            this.style.outline = '';
+            this.classList.remove('keyboard-selected');
+            if (keyboardSelected === this) keyboardSelected = null;
+        });
+    });
+
+    // 全部软件开关按钮交互
+    const btn = document.getElementById('softwareToggleBtn');
+    const knob = document.getElementById('softwareToggleKnob');
+    let isOpen = false;
+    function updateToggleBtn(open) {
+        if(open) {
+            btn.style.background = 'orange';
+            knob.style.transform = 'translateX(1.3rem)';
+        } else {
+            btn.style.background = '#eee';
+            knob.style.transform = 'translateX(0.1rem)';
+        }
+        // 新增：控制所有软件子列表展开/收起
+        document.querySelectorAll('.software-title').forEach(function(title) {
+            const content = title.querySelector('.software-content');
+            const chevronBtn = title.querySelector('.header .actions button:first-child');
+            const icon = chevronBtn.querySelector('i');
+            if (open) {
+                content.style.display = 'block';
+                icon.classList.remove('fa-chevron-down');
+                icon.classList.add('fa-chevron-up');
+                icon.style.color = 'orange';
+            } else {
+                content.style.display = 'none';
+                icon.classList.remove('fa-chevron-up');
+                icon.classList.add('fa-chevron-down');
+                icon.style.color = '#666';
+            }
+        });
+    }
+    btn.onclick = function() {
+        isOpen = !isOpen;
+        updateToggleBtn(isOpen);
+    };
+    updateToggleBtn(isOpen);
+
+    // 暗夜模式切换按钮逻辑
+    const darkModeBtn = document.getElementById('darkModeBtn');
+    const darkModeIcon = darkModeBtn.querySelector('i');
+    function setDarkMode(isDark) {
+        document.documentElement.classList.toggle('dark', isDark);
+        darkModeIcon.classList.toggle('fa-moon-o', !isDark);
+        darkModeIcon.classList.toggle('fa-sun-o', isDark);
+        darkModeBtn.title = isDark ? '明亮模式' : '暗夜模式';
+        darkModeBtn.style.color = isDark ? 'orange' : '#666';
+        // 可选：本地存储记忆
+        try { localStorage.setItem('darkMode', isDark ? '1' : '0'); } catch(e){}
+    }
+    // 读取本地存储
+    let darkMode = false;
+    try { darkMode = localStorage.getItem('darkMode') === '1'; } catch(e){}
+    setDarkMode(darkMode);
+    darkModeBtn.onclick = function() {
+        darkMode = !document.documentElement.classList.contains('dark');
+        setDarkMode(darkMode);
+    };
+
+    // 仅保留核心消息监听逻辑
+    window.addEventListener('message', function(event) {
+        // 搜索与回车跳转
+        if (event.data && (event.data.type === 'search' || event.data.type === 'jumpToFirst')) {
+            const keyword = (event.data.keyword || '').trim().toLowerCase();
+            const cards = Array.from(document.querySelectorAll('.software-title'));
+            let firstMatch = null;
+            cards.forEach(card => {
+                const h2 = card.querySelector('.title h2');
+                if (!h2) return;
+                const name = h2.textContent.trim().toLowerCase();
+                if (!keyword || name.includes(keyword)) {
+                    card.style.display = '';
+                    // 高亮
+                    if (keyword) {
+                        const idx = name.indexOf(keyword);
+                        if (idx !== -1) {
+                            const raw = h2.textContent;
+                            h2.innerHTML = raw.substring(0, idx)
+                                + '<mark style="background: #ffe4b3; color: #d35400;">'
+                                + raw.substring(idx, idx + keyword.length)
+                                + '</mark>'
+                                + raw.substring(idx + keyword.length);
+                        }
+                    } else {
+                        h2.innerHTML = h2.textContent;
+                    }
+                    if (!firstMatch) firstMatch = card;
+                } else {
+                    card.style.display = 'none';
+                    h2.innerHTML = h2.textContent;
+                }
+            });
+            // 回车时滚动到第一个匹配项并闪烁
+            if (event.data.type === 'jumpToFirst' && firstMatch) {
+                firstMatch.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                setTimeout(() => {
+                    window.scrollBy({ top: -20, left: 0, behavior: 'instant' });
+                }, 400);
+                const h2 = firstMatch.querySelector('.title h2');
+                if (h2) {
+                    const originalColor = h2.style.color;
+                    const flashColor = 'orange';
+                    let count = 0;
+                    const interval = setInterval(() => {
+                        if (count < 6) {
+                            h2.style.color = count % 2 === 0 ? flashColor : originalColor;
+                            count++;
+                        } else {
+                            h2.style.color = originalColor;
+                            clearInterval(interval);
+                        }
+                    }, 200);
+                }
+            }
+            return;
+        }
+        // 导航定位
+        if (event.data && event.data.type === 'navigate' && event.data.id) {
+            const id = event.data.id;
+            const headerHeight = event.data.headerHeight || 0;
+            const card = document.getElementById(id);
+            if (card) {
+                // 自动展开内容
+                const content = card.querySelector('.software-content');
+                if (content && content.style.display !== 'block') {
+                    content.style.display = 'block';
+                    const chevronBtn = card.querySelector('.header .actions button:first-child');
+                    if (chevronBtn) {
+                        const icon = chevronBtn.querySelector('i');
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                        icon.style.color = 'orange';
+                    }
+                }
+                // 滚动到卡片，顶部留出 headerHeight 空间
+                const rect = card.getBoundingClientRect();
+                const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+                const top = rect.top + scrollTop - headerHeight;
+                window.scrollTo({ top: top, behavior: 'smooth' });
+
+                // 标题颜色闪烁
+                const h2 = card.querySelector('.title h2');
+                if (h2) {
+                    const originalColor = h2.style.color;
+                    const flashColor = 'orange';
+                    let count = 0;
+                    const interval = setInterval(() => {
+                        if (count < 6) {
+                            h2.style.color = count % 2 === 0 ? flashColor : originalColor;
+                            count++;
+                        } else {
+                            h2.style.color = originalColor;
+                            clearInterval(interval);
+                        }
+                    }, 200);
+                }
+            }
+            return;
+        }
+        // 滚动控制
+        if (event.data && event.data.type === 'scroll') {
+            if (event.data.direction === 'top') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (event.data.direction === 'bottom') {
+                window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+            }
+        }
+    });
+    // 新增：复制标题功能
+    function copySoftwareTitle(btn) {
+        const title = btn.closest('.software-title').querySelector('.title h2');
+        if (!title) return;
+        const text = title.textContent.trim();
+        // 复制到剪贴板
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(() => {
+                btn.classList.add('copied');
+                setTimeout(() => btn.classList.remove('copied'), 250); // 停留时间缩短
+            });
+        } else {
+            // 兼容旧浏览器
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            try {
+                document.execCommand('copy');
+                btn.classList.add('copied');
+                setTimeout(() => btn.classList.remove('copied'), 400); // 停留时间缩短
+            } catch (e) {}
+            document.body.removeChild(textarea);
+        }
+    }
+     // 显示版权提示（弹窗在当前卡片中间）
+        function showCopyrightAlert(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            // 找到当前按钮所在卡片
+            let btn = e && e.target ? e.target : null;
+            let card = btn ? btn.closest('.software-title') : null;
+            if (!card) return;
+            let alertBox = card.querySelector('.copyrightAlert');
+            if (!alertBox) return;
+            if (alertBox.style.display === 'block') return;
+            alertBox.style.display = 'block';
+            setTimeout(() => {
+                alertBox.style.display = 'none';
+            }, 1200);
+        }
+    </script>
+        <script>
+    window.addEventListener('message', function(event) {
+        if (event.data && event.data.type === 'setDarkMode') {
+            document.documentElement.classList.toggle('dark', !!event.data.dark);
+        }
+    });
+    </script>
+</body>
+
+</html>
