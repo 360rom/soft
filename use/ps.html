@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>办公桌- Photoshop软件图文安装教程</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="plyr.css">
+    <style>
+        /* 基础样式重置 */
+        :root {
+            --primary: #0066ff;
+            --primary-dark: #0050c2;
+            --accent: #f97316;
+            --accent-dark: #b45309;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --light: #f9fafb;
+            --dark: #181a1b;
+            --text-light: #e5e7eb;
+            --text-dark: #374151;
+            --gray-light: #e5e7eb;
+            --gray-medium: #9ca3af;
+            --gray-dark: #4b5563;
+            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --shadow-dark: 0 4px 24px rgba(0, 0, 0, 0.45);
+            --radius-sm: 0.375rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 0.75rem;
+            --radius-full: 9999px;
+            --transition: all 0.2s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'system-ui', 'sans-serif';
+            background-color: var(--light);
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 2; /* 调整全局行高 */
+            letter-spacing: 0.1em; /* 调整全局字间距 */
+        }
+
+        /* 链接和按钮样式 */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            border: none;
+            outline: none;
+            background: none;
+            cursor: pointer;
+        }
+
+        /* 布局容器 */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* 工具类 */
+        .flex {
+            display: flex;
+        }
+
+        .flex-col {
+            flex-direction: column;
+        }
+
+        .items-center {
+            align-items: center;
+        }
+
+        .justify-between {
+            justify-content: space-between;
+        }
+
+        .justify-center {
+            justify-content: center;
+        }
+
+        .gap-4 {
+            gap: 1rem;
+        }
+
+        .gap-6 {
+            gap: 1.5rem;
+        }
+
+        .gap-8 {
+            gap: 2rem;
+        }
+
+        .space-y-4 > * + * {
+            margin-top: 1rem;
+        }
+
+        .space-y-6 > * + * {
+            margin-top: 1.5rem;
+        }
+
+        .mb-4 {
+            margin-bottom: 1rem;
+        }
+
+        .mb-6 {
+            margin-bottom: 1.5rem;
+        }
+
+        .mb-8 {
+            margin-bottom: 2rem;
+        }
+
+        .mt-2 {
+            margin-top: 0.5rem;
+        }
+
+        .mt-4 {
+            margin-top: 1rem;
+        }
+
+        .ml-2 {
+            margin-left: 0.5rem;
+        }
+
+        .ml-4 {
+            margin-left: 1rem;
+        }
+
+        .p-4 {
+            padding: 1rem;
+        }
+
+        .p-6 {
+            padding: 1.5rem;
+        }
+
+        .px-4 {
+            padding-left: 1rem;
+            padding-right: 1rem;
+        }
+
+        .py-2 {
+            padding-top: 0.5rem;
+            padding-bottom: 0.5rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .text-primary {
+            color: var(--primary);
+        }
+
+        .text-accent {
+            color: var(--accent);
+        }
+
+        .text-success {
+            color: var(--success);
+        }
+
+        .text-warning {
+            color: var(--warning);
+        }
+
+        .text-danger {
+            color: var(--danger);
+        }
+
+        .text-gray-500 {
+            color: var(--gray-medium);
+        }
+
+        .text-gray-600 {
+            color: var(--gray-dark);
+        }
+
+        .text-white {
+            color: white;
+        }
+
+        .text-sm {
+            font-size: 0.875rem;
+        }
+
+        .text-base {
+            font-size: 1rem;
+        }
+
+        .text-lg {
+            font-size: 1.125rem;
+        }
+
+        .text-xl {
+            font-size: 1.25rem;
+        }
+
+        .text-2xl {
+            font-size: 1.5rem;
+        }
+
+        .text-3xl {
+            font-size: 1.875rem;
+        }
+
+        .font-medium {
+            font-weight: 500;
+        }
+
+        .font-semibold {
+            font-weight: 600;
+        }
+
+        .font-bold {
+            font-weight: 700;
+        }
+
+        .rounded-md {
+            border-radius: var(--radius-md);
+        }
+
+        .rounded-lg {
+            border-radius: var(--radius-lg);
+        }
+
+        .rounded-xl {
+            border-radius: var(--radius-lg);
+        }
+
+        .rounded-full {
+            border-radius: var(--radius-full);
+        }
+
+        .shadow-md {
+            box-shadow: var(--shadow-md);
+        }
+
+        .shadow-lg {
+            box-shadow: var(--shadow-lg);
+        }
+
+        .shadow-xl {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .bg-white {
+            background-color: white;
+        }
+
+        .bg-primary {
+            background-color: var(--primary);
+        }
+
+        .bg-accent {
+            background-color: var(--accent);
+        }
+
+        .bg-success {
+            background-color: var(--success);
+        }
+
+        .bg-warning {
+            background-color: var(--warning);
+        }
+
+        .bg-danger {
+            background-color: var(--danger);
+        }
+
+        .bg-blue-50 {
+            background-color: #eff6ff;
+        }
+
+        .bg-yellow-50 {
+            background-color: #fffbeb;
+        }
+
+        .bg-red-50 {
+            background-color: #fef2f2;
+        }
+
+        .border {
+            border: 1px solid var(--gray-light);
+        }
+
+        .border-blue-200 {
+            border-color: #bfdbfe;
+        }
+
+        .border-yellow-200 {
+            border-color: #fcd34d;
+        }
+
+        .border-red-200 {
+            border-color: #fecaca;
+        }
+
+        .list-disc {
+            list-style-type: disc;
+            padding-left: 1.25rem;
+        }
+
+        .leading-relaxed {
+            line-height: 1.625;
+        }
+
+        .transition {
+            transition: var(--transition);
+        }
+
+        .hover\:scale-105:hover {
+            transform: scale(1.05);
+        }
+
+        .hover\:shadow-xl:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        .hover\:bg-primary\/90:hover {
+            background-color: rgba(0, 102, 255, 0.9);
+        }
+
+        .hover\:bg-accent\/90:hover {
+            background-color: rgba(249, 115, 22, 0.9);
+        }
+
+        /* 动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+
+        /* 导航栏 */
+        #navbar {
+            background-color: white;
+            box-shadow: var(--shadow-md);
+            position: fixed;
+            width: 100%;
+            z-index: 50;
+            transition: var(--transition);
+            padding: 0.75rem 0;
+        }
+
+        #navbar.scrolled {
+            padding: 0.5rem 0;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* 主内容区 */
+        main {
+            flex: 1;
+            padding-top: 6rem;
+            padding-bottom: 3rem;
+            background-color: white;
+        }
+
+        /* 软件信息卡片 */
+        .software-header {
+            background: linear-gradient(135deg, #92a33d 0%, #3860e3 100%);
+            padding: 1.5rem;
+            border-radius: 0.75rem 0.75rem 0 0;
+            min-height: 60px;
+            color: white;
+        }
+
+        .software-header h1 {
+            font-size: clamp(1.5rem, 3vw, 2.5rem);
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            line-height: 1.4; /* 调整标题行高 */
+            letter-spacing: 0.1em; /* 调整标题字间距 */
+        }
+
+        /* 按钮组 */
+        .action-btns {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            transition: var(--transition);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* 下载区域 */
+        .download-input-group {
+            display: flex;
+            align-items: stretch;
+            background-color: white;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+        }
+
+        .download-input {
+            flex: 1;
+            padding: 0.5rem 1rem;
+            border: none;
+            outline: none;
+            font-size: 0.95rem;
+            word-break: break-all;
+        }
+
+        .download-input:focus {
+            box-shadow: 0 0 0 2px var(--primary);
+        }
+
+       .copy-btn {
+            padding: 0.5rem 1rem;
+            background-color: var(--primary);
+            color: white;
+            transition: var(--transition);
+            border-radius: var(--radius-md); /* 添加圆角样式 */
+        }
+
+        .copy-btn:hover {
+            background-color: var(--primary-dark);
+        }
+
+        /* 安装步骤 */
+        .step {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .step-number {
+            flex-shrink: 0;
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        /* 图片展示 */
+        .step-image-container {
+            position: relative;
+            margin: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .step-image-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .step-image {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: var(--radius-md);
+            border: 1px solid white;
+            box-shadow: 0 2px 12px rgba(30, 30, 30, 0.12), 
+                        inset 0 0 0 1.5px rgba(34, 34, 34, 0.1);
+            transition: transform 0.2s;
+            display: block;
+            position: relative;
+        }
+
+        /* 水印样式，定位在图片内部右上角 */
+        .step-watermark {
+            position: absolute;
+            top: 8px;
+            right: 16px;
+            color: rgba(255,255,255,0.85);
+            background: rgba(0,0,0,0.25);
+            padding: 2px 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 2;
+            /* 保证在图片上方 */
+            transition: transform 0.2s;
+            /* 让水印不超出图片区域 */
+            max-width: 60%;
+            white-space: nowrap;
+        }
+
+        .image-actions {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.75rem;
+            background: rgba(34, 34, 34, 0.12);
+            border-radius: 1.5rem;
+            padding: 0.25rem 0.5rem;
+            z-index: 10;
+        }
+
+        .image-action-btn {
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            background: rgba(34, 34, 34, 0.8);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .image-action-btn:hover {
+            background: rgba(17, 17, 17, 0.9);
+        }
+
+        /* 通知弹窗 */
+        .toast {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            min-width: 160px;
+            max-width: 90vw;
+            padding: 1rem 2rem;
+            background: rgba(34, 34, 34, 0.95);
+            color: white;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-xl);
+            text-align: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s;
+            pointer-events: none;
+        }
+
+        .toast.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* 浮动按钮 */
+        .floating-btn {
+            position: fixed;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        #backToTop {
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        #backToTop.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #darkModeToggle {
+            bottom: 5rem;
+            right: 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            opacity: 1; /* 修改为可见 */
+            visibility: visible; /* 修改为可见 */
+        }
+
+        /* 图片弹窗样式 */
+        .image-popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .image-popup.active {
+            display: flex;
+        }
+
+        .image-popup-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .image-popup-img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .image-popup-close {
+            position: absolute;
+            top: -1rem;
+            right: -1rem;
+            width: 2rem;
+            height: 2rem;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* 页脚 */
+        footer {
+            background-color: #aaaaaa;
+            color: white;
+            padding: 1.5rem 0;
+            text-align: center;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .action-btns {
+                flex-direction: column;
+                gap: 0.75rem;
+            }
+            
+            .btn {
+                width: 100%;
+            }
+            
+            .download-group {
+                flex-direction: column;
+            }
+            
+            .step {
+                flex-direction: column;
+            }
+            
+            .step-number {
+                margin-bottom: 0.5rem;
+            }
+        }
+
+        /* 暗色模式 */
+        .dark-mode {
+            background-color: var(--dark);
+            color: var(--text-light);
+        }
+
+        .dark-mode #navbar,
+        .dark-mode main,
+        .dark-mode .bg-white,
+        .dark-mode .bg-blue-50,
+        .dark-mode .bg-yellow-50,
+        .dark-mode .bg-red-50 {
+            background-color: #23272f;
+            color: var(--text-light);
+        }
+
+        .dark-mode .text-gray-600,
+        .dark-mode .text-gray-500 {
+            color: #bdbdbd;
+        }
+
+        .dark-mode .border,
+        .dark-mode .border-blue-200,
+        .dark-mode .border-yellow-200,
+        .dark-mode .border-red-200 {
+            border-color: #444;
+        }
+
+        .dark-mode input {
+            background-color: #23272f;
+            color: var(--text-light);
+            border-color: #444;
+        }
+
+        .dark-mode .shadow-lg,
+        .dark-mode .shadow-xl {
+            box-shadow: var(--shadow-dark);
+        }
+
+        .dark-mode .image-popup-img {
+            background-color: #23272f;
+        }
+
+        .dark-mode #darkModeToggle {
+            background-color: #444;
+        }
+        
+        #wechatBtn:hover {
+            background-color: #218838; /* 深一点的绿色 */
+        }
+        .wechat-qr-box {
+            position: fixed;
+            bottom: 9rem;
+            right: 5rem;
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 1px solid var(--gray-light);
+            box-shadow: var(--shadow-md);
+            z-index: 1000;
+            display: none;
+            box-sizing: border-box;
+        }
+
+        .wechat-qr-img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* 保持完整显示 */
+            /* object-fit: cover; */ /* 如果你希望裁剪成正方形显示 */
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <header id="navbar">
+        <div class="container flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <i class="fas fa-archive text-primary text-2xl"></i>
+                <span class="text-xl font-bold text-primary">办公桌</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <main>
+        <div class="container px-4">
+            <!-- 软件信息卡片 -->
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden mb-8 animate-fade-in">
+                <div class="software-header">
+                    <h1>PS2025安装教程</h1>
+                </div>
+
+                <div class="p-6">
+                    <div class="flex flex-col md:flex-row gap-6">
+                        <div class="md:w-2/3">
+                            <p style="text-indent: 2em; line-height: 1.6;">
+                               Adobe Photoshop 是一款功能强大的图像处理软件，在图像编辑、设计、创意等领域应用广泛
+                            </p>
+
+                            <div class="space-y-2 mb-6">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-success mr-2"></i>
+                                    <span>软件名称: PS2025（多版本）</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check-circle text-success mr-2"></i>
+                                    <span>更新日期: 2025年</span>
+                                </div>
+                            </div>
+
+                            <div class="action-btns">
+                                <a href="#download" class="btn btn-accent">
+                                    <i class="fas fa-download mr-2"></i>
+                                    立即下载
+                                </a>
+                                  <!-- #video-tutorial -->
+                                <a href="#video-tutorial" class="btn btn-primary">
+                                    <i class="fas fa-play-circle mr-2"></i>
+                                    视频教程
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 下载区域 -->
+            <section id="download" class="bg-white rounded-xl shadow-lg p-6 mb-8 animate-fade-in" style="animation-delay: 0.1s">
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-cloud-download text-primary mr-2"></i>
+                    下载地址
+                </h2>
+
+                <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <!-- 百度网盘 -->
+                        <div class="flex-1">
+                            <p class="font-medium">
+                                <i class="fas fa-cloud text-blue-500 mr-2"></i>百度网盘
+                                <span class="text-gray-500">提取码: <span id="baiduCode">6666</span></span>
+                                <button class="copy-btn ml-2" onclick="copyCode('baiduCode')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </p>
+                            <div class="download-input-group mt-2">
+                                <input type="text" id="baiduLink" value="" class="download-input" readonly>
+                                <button class="copy-btn" onclick="copyText('baiduLink')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- 夸克网盘 -->
+                        <div class="flex-1">
+                            <p class="font-medium">
+                                <i class="fas fa-cloud text-purple-500 mr-2"></i>夸克网盘
+                                <span class="text-gray-500">提取码: <span id="quarkCode"></span></span>
+                                <button class="copy-btn ml-2" onclick="copyCode('quarkCode')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </p>
+                            <div class="download-input-group mt-2">
+                                <input type="text" id="quarkLink" value="" class="download-input" readonly>
+                                <button class="copy-btn" onclick="copyText('quarkLink')">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 人工支持 -->
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-life-ring text-primary mr-2"></i>
+                    人工支持
+                </h2>
+                <div class="space-y-2">
+                    <p><i class="fab fa-weixin text-success mr-2"></i> 微信支持: <span class="text-primary">Wander-WeCat</span></p>
+                    <p><i class="fas fa-envelope text-warning mr-2"></i> 邮件支持: <span class="text-primary">andyou666@foxmail.com</span></p>
+                </div>
+
+                <!-- 软件说明 -->
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-info-circle text-primary mr-2"></i>
+                    软件说明
+                </h2>
+                <div class="space-y-2">
+                    <p style="text-indent: 2em; line-height: 1.6;">注：同类软件安装部署相似，部分版本因差异或需求不同，操作步骤略有不同。本教程可助您快速了解并掌握安装过程（省去同类不必要教程，提供代表性指导，差异环节会提示标注）</p>
+                    <p><i class="fas fa-leaf text-success mr-2"></i> 绿色版: <span class="text-gray-600">解压即可使用，无需安装</span></p>
+                    <p><i class="fas fa-desktop text-primary mr-2"></i> 离线版: <span class="text-gray-600">无需网络即可运行</span></p>
+                    <p><i class="fas fa-unlock text-warning mr-2"></i> 免激活: <span class="text-gray-600">下载安装使用，无需激活操作</span></p>
+                    <p><i class="fas fa-key text-danger mr-2"></i> 破解版: <span class="text-gray-600">去除软件使用限制</span></p>
+                </div>
+
+                <!-- 温馨提示 -->
+                <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-4 mb-6">
+                    <div class="flex items-start">
+                        <i class="fas fa-info-circle text-warning text-xl mt-1 mr-3"></i>
+                        <div>
+                            <p class="font-medium text-warning">温馨提示</p>
+                            <p class="text-yellow-600 mt-1">（如有）统一解压密码: </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 安装步骤 -->
+            <section class="bg-white rounded-xl shadow-lg p-6 mb-8 animate-fade-in" style="animation-delay: 0.2s">
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-cogs text-primary mr-2"></i>
+                    安装步骤
+                </h2>
+
+                <div class="space-y-8">
+                    <!-- 步骤1 -->
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3 class="font-semibold text-lg mb-2">解压文件</h3>
+                            <p class="text-gray-600">解压安装包,到合适文件夹</p>
+                            
+                            <!-- 步骤图片 -->
+                            <div class="step-image-container">
+                                <span class="step-image-wrapper">
+                                    <img src="ps1.png" alt="解压文件步骤图示" class="step-image">
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 步骤2 -->
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3 class="font-semibold text-lg mb-2">运行安装程序</h3>
+                            <p class="text-gray-600">选择解压文件：Set-up程序，鼠标右击，以管理员身份运行</p>
+                        </div>
+                    </div>
+                    <!-- 步骤图片 -->
+                    <div class="step-image-container">
+                        <span class="step-image-wrapper">
+                            <img src="ps2.png" alt="运行安装程序步骤图示" class="step-image">
+                        </span>
+                    </div>
+                    <!-- 步骤3 -->
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3 class="font-semibold text-lg mb-2">安装向导</h3>
+                            <p class="text-gray-600">更改安装路径位置，新建或选择合适文件夹</p>
+                        </div>
+                    </div>
+                    <!-- 步骤图片 -->
+                    <div class="step-image-container">
+                        <span class="step-image-wrapper">
+                            <img src="ps3.png" alt="安装向导步骤图示" class="step-image">
+                        </span>
+                    </div>
+                    <!-- 步骤4 -->
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3 class="font-semibold text-lg mb-2">完成安装</h3>
+                            <p class="text-gray-600">继续安装，并等待完成；关闭安装程序</p>
+                        </div>
+                    </div>
+                    <!-- 步骤图片 -->
+                    <div class="step-image-container">
+                        <span class="step-image-wrapper">
+                            <img src="ps4.png" alt="完成安装步骤图示" class="step-image">
+                        </span>
+                    </div>
+                    <!-- 步骤5 -->
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-content">
+                            <h3 class="font-semibold text-lg mb-2">创建快捷方式</h3>
+                            <p class="text-gray-600">选择程序安装目录，选择PS图标程序，鼠标右键，创建桌面快捷方式：或在电脑win键下，所有应用中，找到该程序，并拖图标拽创建</p>
+                        </div>
+                    </div>
+                    <!-- 步骤图片 -->
+                    <div class="step-image-container">
+                        <span class="step-image-wrapper">
+                            <img src="ps5.png" alt="创建快捷方式步骤图示" class="step-image">
+                        </span>
+                    </div>
+                    <div class="step-image-container">
+                        <span class="step-image-wrapper">
+                            <img src="ps5.1.png" alt="创建快捷方式补充步骤图示" class="step-image">
+                        </span>
+                    </div>
+                    <!-- 步骤6 -->
+                    <div class="step">
+                        <div class="step-number">6</div>
+                        <div class="step-content">
+                            <h3 class="font-semibold text-lg mb-2">激活软件（如有）</h3>
+                            <p class="text-gray-600">两种方式：授权码、注册机</p>
+                        </div>
+                    </div>
+                    <!-- 步骤图片 -->
+                    <div class="step-image-container">
+                        <span class="step-image-wrapper">
+                            <img src="ps6.png" alt="激活软件步骤图示" class="step-image">
+                        </span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 注意事项 -->
+            <section class="bg-white rounded-xl shadow-lg p-6 mb-8 animate-fade-in" style="animation-delay: 0.3s">
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-exclamation-triangle text-danger mr-2"></i>
+                    注意事项
+                </h2>
+
+                <div class="bg-red-50 border border-red-200 rounded-lg p-4">
+                    <ul class="list-disc space-y-2 text-danger">
+                        <li>安装路径，建议英文，非系统C盘</li>
+                        <li>文件需留意完整度，避免拷贝/下载缺少</li>
+                        <li>卸载、注册表残留，可专业工具解决此类影响</li>
+                        <li>运行注册机keygen前：必须关闭"所有杀毒软件(含自带）；否则阻碍法无法运行。若已经没有该文件，需重新解压安装包</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 视频教程容器 -->
+            <section id="video-tutorial" class="bg-white rounded-xl shadow-lg p-6 mb-8 animate-fade-in" style="animation-delay:0.4s;">
+                <h2 class="text-2xl font-bold mb-6 flex items-center">
+                    <i class="fas fa-play-circle text-primary mr-2"></i>
+                    视频教程
+                </h2>
+                <!-- 播放器容器，ture/false 控制显示 -->
+                <div id="videoPlayerContainer" style="max-width:720px;margin:2rem auto;display:none;">
+                    <video id="PlyrVideo" playsinline controls>
+                        <source src="ps2025.mp4" type="video/mp4" />
+                    </video>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer>
+        <div>来源互联网 仅供学习使用</div>
+        <div class="mt-2">反馈邮件: andyou666@foxmail.com</div>
+    </footer>
+
+    <!-- 回到顶部按钮 -->
+    <button id="backToTop" class="floating-btn">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- 暗夜模式切换按钮 -->
+    <button id="darkModeToggle" class="floating-btn">
+        <i id="darkModeIcon" class="fas fa-moon"></i>
+    </button>
+
+    <!-- 加入微信按钮 -->
+    <button id="wechatBtn" class="floating-btn" style="bottom: 9rem; right: 1.5rem;" title="加入微信">
+        <i class="fab fa-weixin"></i>
+    </button>
+
+    <!-- 微信二维码正方形框 -->
+    <div id="wechatQRBox" class="wechat-qr-box">
+        <img src="../img/wxcode.jpg" alt="微信二维码" class="wechat-qr-img">
+    </div>
+
+    <!-- 通知弹窗 -->
+    <div id="toast" class="toast">已复制</div>
+
+    <!-- 图片弹窗 -->
+    <div id="imagePopup" class="image-popup">
+        <div class="image-popup-content">
+            <img src="" alt="放大图片" class="image-popup-img" id="popupImage">
+            <button class="image-popup-close" id="closeImagePopup">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="plyr.min.js"></script>
+    <script>
+        // 导航栏滚动效果
+        const navbar = document.getElementById('navbar');
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+                backToTopBtn.classList.add('visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // 复制文本函数
+        function copyText(id) {
+            const input = document.getElementById(id);
+            if (!input.value || input.value.trim() === "") {
+                showToast('抱歉，暂无');
+                return;
+            }
+            // 修复部分浏览器 input.select() 无效问题
+            input.focus();
+            input.setSelectionRange(0, input.value.length);
+            try {
+                navigator.clipboard.writeText(input.value).then(() => {
+                    showToast('已复制链接');
+                }).catch(err => {
+                    // fallback
+                    document.execCommand('copy');
+                    showToast('已复制链接');
+                });
+            } catch (err) {
+                showToast('复制失败');
+            }
+        }
+
+        // 复制提取码
+        function copyCode(id) {
+            const code = document.getElementById(id).textContent;
+            if (!code || code.trim() === "") {
+                showToast('抱歉，暂无');
+                return;
+            }
+            navigator.clipboard.writeText(code).then(() => {
+                showToast('已复制提取码');
+            }).catch(err => {
+                showToast('复制失败');
+            });
+        }
+
+        // 显示通知
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 1500);
+        }
+
+        // 回到顶部
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#' || !targetId) return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // 修复 offsetTop 计算错误（考虑滚动容器和 fixed navbar）
+                    const rect = targetElement.getBoundingClientRect();
+                    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                    window.scrollTo({
+                        top: rect.top + scrollTop - navbar.offsetHeight - 16,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        (function () {
+            // 工具函数：创建按钮
+            function createBtn(icon, title, action) {
+                const btn = document.createElement('button');
+                btn.className = 'image-action-btn';
+                btn.title = title;
+                btn.dataset.action = action;
+                btn.innerHTML = `<i class="fas fa-${icon}"></i>`;
+                return btn;
+            }
+            // 自动为每个.step-image添加操作按钮和水印
+            document.querySelectorAll('.step-image').forEach((img) => {
+                // 包裹图片
+                let wrapper = img.closest('.step-image-wrapper');
+                if (!wrapper) {
+                    wrapper = document.createElement('span');
+                    wrapper.className = 'step-image-wrapper';
+                    img.parentNode.insertBefore(wrapper, img);
+                    wrapper.appendChild(img);
+                }
+                // 添加水印
+                if (!wrapper.querySelector('.step-watermark')) {
+                    const watermark = document.createElement('div');
+                    watermark.className = 'step-watermark';
+                    watermark.textContent = '版权所有';
+                    wrapper.appendChild(watermark);
+                }
+                // 添加操作按钮（必须直接添加到 .step-image-container 下，且每个只添加一次）
+                let container = wrapper.closest('.step-image-container');
+                if (!container) return;
+                // 防止多次插入
+                if (!container.querySelector('.image-actions')) {
+                    const actions = document.createElement('div');
+                    actions.className = 'image-actions';
+                    actions.appendChild(createBtn('search-plus', '放大', 'zoom-in'));
+                    actions.appendChild(createBtn('search-minus', '缩小', 'zoom-out'));
+                    actions.appendChild(createBtn('expand', '全屏查看', 'popup'));
+                    container.appendChild(actions);
+                }
+                // 初始化缩放
+                img.style.transform = 'scale(1)';
+                img.dataset.scale = 1;
+            });
+
+            // 事件委托：图片操作
+            document.addEventListener('click', function (e) {
+                const btn = e.target.closest('.image-action-btn');
+                if (!btn) return;
+                const action = btn.dataset.action;
+                // 查找当前按钮所属的 step-image-container
+                const container = btn.closest('.step-image-container');
+                if (!container) return;
+                // 只查找当前container下的wrapper和img
+                const wrapper = container.querySelector('.step-image-wrapper');
+                if (!wrapper) return;
+                const img = wrapper.querySelector('.step-image');
+                const watermark = wrapper.querySelector('.step-watermark');
+                let scale = parseFloat(img.dataset.scale) || 1;
+                if (action === 'zoom-in') {
+                    scale = Math.min(scale + 0.2, 2.5);
+                    img.style.transform = `scale(${scale})`;
+                    watermark && (watermark.style.transform = `scale(${scale})`);
+                    img.dataset.scale = scale;
+                } else if (action === 'zoom-out') {
+                    scale = Math.max(scale - 0.2, 0.5);
+                    img.style.transform = `scale(${scale})`;
+                    watermark && (watermark.style.transform = `scale(${scale})`);
+                    img.dataset.scale = scale;
+                } else if (action === 'popup') {
+                    const popup = document.getElementById('imagePopup');
+                    const popupImg = document.getElementById('popupImage');
+                    popupImg.src = img.src;
+                    popupImg.alt = img.alt || '';
+                    popup.classList.add('active');
+                }
+            });
+
+            // 关闭图片弹窗
+            document.getElementById('closeImagePopup').addEventListener('click', () => {
+                document.getElementById('imagePopup').classList.remove('active');
+            });
+            document.getElementById('imagePopup').addEventListener('click', (e) => {
+                if (e.target === e.currentTarget) {
+                    e.currentTarget.classList.remove('active');
+                }
+            });
+        })();
+
+        // 暗夜模式切换
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const darkModeIcon = document.getElementById('darkModeIcon');
+        // 页面加载时读取本地存储的模式
+        const savedMode = localStorage.getItem('darkMode');
+        if (savedMode === 'enabled') {
+            document.body.classList.add('dark-mode');
+            darkModeIcon.classList.remove('fa-moon');
+            darkModeIcon.classList.add('fa-sun');
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                darkModeIcon.classList.remove('fa-moon');
+                darkModeIcon.classList.add('fa-sun');
+                localStorage.setItem('darkMode', 'enabled');
+            } else {
+                darkModeIcon.classList.remove('fa-sun');
+                darkModeIcon.classList.add('fa-moon');
+                localStorage.setItem('darkMode', 'disabled');
+            }
+        });
+
+        // 进入页面时恢复图片缩放
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.step-image').forEach(img => {
+                img.style.transform = 'scale(1)';
+                img.dataset.scale = 1;
+                const watermark = document.getElementById(img.id.replace('Image', 'Watermark'));
+                if (watermark) {
+                    watermark.style.transform = 'scale(1)';
+                }
+            });
+        });
+
+        // 微信二维码弹窗逻辑修复
+        const wechatBtn = document.getElementById('wechatBtn');
+        const qrBox = document.getElementById('wechatQRBox');
+        let qrVisible = false;
+        wechatBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            qrVisible = !qrVisible;
+            qrBox.style.display = qrVisible ? 'block' : 'none';
+        });
+        document.addEventListener('click', (e) => {
+            // 修复弹窗关闭逻辑，避免按钮和弹窗重叠导致无法关闭
+            if (qrVisible && !wechatBtn.contains(e.target) && !qrBox.contains(e.target)) {
+                qrBox.style.display = 'none';
+                qrVisible = false;
+            }
+        });
+
+        // ture/false 控制播放器显示
+        var showPlyr = true;
+        const videoPlayerContainer = document.getElementById('videoPlayerContainer');
+        if (showPlyr) {
+            videoPlayerContainer.style.display = 'block';
+            const player = new Plyr('#PlyrVideo', {
+                controls: [
+                    'play-large', // 大播放按钮
+                    'play',       // 播放/暂停
+                    'progress',   // 进度条
+                    'current-time', // 当前时间
+                    'mute',       // 静音
+                    'volume',     // 音量
+                    'settings',   // 设置（含速度）
+                    'fullscreen'  // 全屏
+                ],
+                settings: ['speed'],
+                speed: { selected: 1, options: [0.5, 1, 1.5, 2] }
+            });
+        } else {
+            videoPlayerContainer.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
