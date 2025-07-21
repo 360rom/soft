@@ -1126,7 +1126,7 @@
 <div style="text-align:left;">
 			<p style="line-height:0.5; letter-spacing: 0.05em; font-weight: bold;">关于：</p>
             <p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">软件以windows平台为主，遵守：无病毒、无捆绑等基础，结合用户特点与角度；采用人工：更新、检测，月/季/年定期，并迭代维护；致力构建：安全、纯净、高效资源共享生态；用户要，合理合规使用，并获取官方正版和授权</p>
-			<p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">部分软件，因开源或官方提供完整版，固仅提供相关内容站；软件非最新版最好，亦需考虑稳定，适用性，满足生产力环境；</p>
+			<p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">推荐使用电脑访问；部分软件，因开源或官方提供完整版，固仅提供相关内容站；软件非最新版最好，亦需考虑稳定，适用性，满足生产力环境；</p>
             <p style="line-height:0.5; letter-spacing: 0.05em; font-weight: bold;">声明：</p>
             <p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">本站收录所有软件，均由第三方提供，且仅供个人学习使用；严禁任何商业用途，但因局限性，难以对其全面监控；如涉权益争议，请贵方，以PDF书面材料佐证，核实后下架/删除处理，预处理时间：1-7天</p>
             <p style="line-height:0.5; letter-spacing: 0.05em; font-weight: bold;">其它：</p>
@@ -1148,7 +1148,7 @@
                 <button id="password-submit">确定</button>
             </div>
             <div id="password-error"></div>
-            <div class="password-tip">扫码关注公众号获取今日密码</div>
+            <div class="password-tip">扫码关注后，回复〔密码〕 即可</div>
             <img src="img/wxcode.jpg" alt="公众号二维码" class="password-qr" />
         </div>
     </div>
@@ -1749,6 +1749,73 @@
                 if (styleTag) styleTag.remove();
             }
         })();
+
+        // ====== 常用禁止代码优化版（每个按键可自定义开关） ======
+        const forbidKeysConfig = {
+            F12: true,
+            CtrlU: true,
+            CtrlS: true,
+            CtrlShiftI: true,
+            CtrlF12: true,
+            CtrlF5: true,
+            CtrlShiftC: true,
+            CtrlP: true, 
+            contextmenu: true,
+            dragstart: true,
+            selectstart: true
+            
+        };
+
+        window.addEventListener('keydown', function(e) {
+            // F12
+            if (forbidKeysConfig.F12 && e.key === 'F12') {
+                e.preventDefault(); e.stopPropagation(); return false;
+            }
+            // Ctrl+U
+            if (forbidKeysConfig.CtrlU && e.ctrlKey && ['u', 'U'].includes(e.key)) {
+                e.preventDefault(); e.stopPropagation(); return false;
+            }
+            // Ctrl+S
+            if (forbidKeysConfig.CtrlS && e.ctrlKey && ['s', 'S'].includes(e.key)) {
+                e.preventDefault(); e.stopPropagation(); return false;
+            }
+            // Ctrl+Shift+I
+            if (forbidKeysConfig.CtrlShiftI && e.ctrlKey && e.shiftKey && ['i', 'I'].includes(e.key)) {
+                e.preventDefault(); e.stopPropagation(); return false;
+            }
+            // Ctrl+F12
+            if (forbidKeysConfig.CtrlF12 && e.ctrlKey && e.key === 'F12') {
+                e.preventDefault(); e.stopPropagation(); return false;
+            }
+            // Ctrl+F5
+            if (forbidKeysConfig.CtrlF5 && e.ctrlKey && e.key === 'F5') {
+                e.preventDefault(); e.stopPropagation(); return false;
+            }
+            // Ctrl+Shift+C
+            if (forbidKeysConfig.CtrlShiftC && e.ctrlKey && e.shiftKey && ['c', 'C'].includes(e.key)) {
+                e.preventDefault(); e.stopPropagation(); return false;
+            }
+             // Ctrl+P
+            if (forbidKeysConfig.CtrlP && e.ctrlKey && ['p', 'P'].includes(e.key)) {
+                e.preventDefault(); e.stopPropagation(); return false;
+            }
+        }, true);
+
+        if (forbidKeysConfig.contextmenu) {
+            window.addEventListener('contextmenu', function(e) {
+                e.preventDefault(); return false;
+            }, true);
+        }
+        if (forbidKeysConfig.dragstart) {
+            window.addEventListener('dragstart', function(e) {
+                e.preventDefault(); return false;
+            }, true);
+        }
+        if (forbidKeysConfig.selectstart) {
+            window.addEventListener('selectstart', function(e) {
+                e.preventDefault(); return false;
+            }, true);
+        }
     </script>
 </body>
 
