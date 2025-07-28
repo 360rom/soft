@@ -590,6 +590,57 @@
             color: var(--primary);
         }
 
+        /* 计划弹窗样式 */
+        #plan-popup {
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 3000;
+            display: none;
+        }
+
+        #plan-popup.active {
+            display: block;
+        }
+
+        #plan-popup .email-popup-mask {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        #plan-popup .email-popup-content {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #fff;
+            color: #333;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.18);
+            padding: 2rem 2.5rem 1.5rem 2.5rem;
+            min-width: 220px;
+            text-align: center;
+        }
+
+        #plan-popup .email-popup-close {
+            position: absolute;
+            right: 1em;
+            top: 0.7em;
+            font-size: 1.3em;
+            color: #888;
+            cursor: pointer;
+        }
+
+        #plan-popup .email-popup-close:hover {
+            color: var(--primary);
+        }
+
         /* 关于弹窗样式 */
         #about-popup {
             position: fixed;
@@ -642,11 +693,8 @@
             color: var(--primary);
         }
 
-        html.dark #email-popup .email-popup-content {
-            background: #23272f;
-            color: #e5e7eb;
-        }
-
+        html.dark #email-popup .email-popup-content,
+        html.dark #plan-popup .email-popup-content,
         html.dark #about-popup .email-popup-content {
             background: #23272f;
             color: #e5e7eb;
@@ -868,6 +916,7 @@
             }
             #qr-modal .qr-popup,
             #email-popup .email-popup-content,
+            #plan-popup .email-popup-content,
             #about-popup .email-popup-content,
             #password-modal .password-popup {
                 min-width: 0 !important;
@@ -1103,11 +1152,12 @@
     <footer>
         <!-- 页脚内容 -->
         <p>仅供个人学习使用，请下载后24小时内删除，严禁任何商业用途</p>
-        <p>版权所有 &copy; 办公桌-软件下载</p>
         <a id="about-link" style="cursor:pointer;">关于</a> | 
         <a id="guide-link" style="cursor:pointer;">指南</a> |
-        <a id="email-link" style="cursor:pointer;">邮件</a> 
-<p>本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank"> <img src="img/upyun_icon4.png" align="absmiddle" width="30px" height="30px" /></a>提供CDN加速/云存储服务</p>
+		<a id="plan-link" style="cursor:pointer;">计划</a> |        
+		<a id="email-link" style="cursor:pointer;">邮件</a> 
+		<p>版权所有 &copy; 办公桌-软件下载</p>
+        <p>本网站由<a href="https://www.upyun.com/?utm_source=lianmeng&utm_medium=referral" target="_blank"> <img src="img/upyun_icon4.png" align="absmiddle" width="30px" height="30px" /></a>提供CDN加速/云存储服务</p>
     </footer>
 
     <!-- 邮件弹窗 -->
@@ -1115,7 +1165,19 @@
         <div class="email-popup-mask"></div>
         <div class="email-popup-content">
             <span class="email-popup-close" id="email-popup-close">&times;</span>
-            <p>联系：xxx@qq.com</p>
+            <p>联系：andyou666@foxmail.com</p>
+        </div>
+    </div>
+    <!-- 计划弹窗 -->
+    <div id="plan-popup">
+        <div class="email-popup-mask"></div>
+        <div class="email-popup-content">
+            <span class="email-popup-close" id="plan-popup-close">&times;</span>
+            <div style="text-align:left;">
+                <p style="text-indent:0em; line-height:1.5; letter-spacing: 0.05em;">现阶段：国内网盘，存储文件，在下载、容量、限速层面，体验较差...</p>
+				<p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">计划使用：Alist、NAS、微软365、对象存储等，这类平台/设备支持；彻底解决，现存弊端和问题，满足：不限速、无注册、直接下等需求</p>
+                <p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">如您考虑，可捐赠/赞助相关（均百元起），我方为其提供：第一时间响应和服务支持</p>
+            </div>，
         </div>
     </div>
     <!-- 关于弹窗 -->
@@ -1123,7 +1185,7 @@
         <div class="email-popup-mask"></div>
         <div class="email-popup-content">
             <span class="email-popup-close" id="about-popup-close">&times;</span>
-<div style="text-align:left;">
+			<div style="text-align:left;">
 			<p style="line-height:0.5; letter-spacing: 0.05em; font-weight: bold;">关于：</p>
             <p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">软件以windows平台为主，遵守：无病毒、无捆绑等基础，结合用户特点与角度；采用人工：更新、检测，月/季/年定期，并迭代维护；致力构建：安全、纯净、高效资源共享生态；用户要，合理合规使用，并获取官方正版和授权</p>
 			<p style="text-indent:2em; line-height:1.5; letter-spacing: 0.05em;">推荐使用电脑访问；部分软件，因开源或官方提供完整版，固仅提供相关内容站；软件非最新版最好，亦需考虑稳定，适用性，满足生产力环境；</p>
@@ -1434,6 +1496,12 @@
                 if (aboutPopup && aboutPopup.classList.contains('active')) {
                     aboutPopup.classList.remove('active');
                 }
+                // 关闭计划弹窗（如果启用）
+                const planPopup = document.getElementById('plan-popup');
+                if (planPopup && planPopup.style.display !== 'none') {
+                    planPopup.style.display = 'none';
+                    document.body.style.overflow = '';
+                }
                 // 关闭密码弹窗（如果启用）
                 const passwordModal = document.getElementById('password-modal');
                 if (passwordModal && passwordModal.style.display !== 'none') {
@@ -1582,6 +1650,23 @@
             });
             aboutPopup.querySelector('.email-popup-mask').addEventListener('click', function(){
                 aboutPopup.classList.remove('active');
+            });
+        }
+
+        // 计划弹窗逻辑
+        const planLink = document.getElementById('plan-link');
+        const planPopup = document.getElementById('plan-popup');
+        const planPopupClose = document.getElementById('plan-popup-close');
+        if(planLink && planPopup && planPopupClose){
+            planLink.addEventListener('click', function(e){
+                e.preventDefault();
+                planPopup.classList.add('active');
+            });
+            planPopupClose.addEventListener('click', function(){
+                planPopup.classList.remove('active');
+            });
+            planPopup.querySelector('.email-popup-mask').addEventListener('click', function(){
+                planPopup.classList.remove('active');
             });
         }
 
